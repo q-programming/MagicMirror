@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="app_name">Magic Mirror</string>
+    <string name="home_name" translatable="false">Mirror Home</string>
+    <string name="unknown_ip_address">Unknown IP Address</string>
+    <string name="wind_pointer">wind pointer</string>
+    <string name="weather_icon">Weather Icon</string>
+    <string name="wind_direction_compass">Wind direction compass</string>
+    <string name="_10kmh">10 km/h</string>
+    <string name="today">Today</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="stopping">Stopping mirror home</string>
+    <string name="calendar_permission_denied">Calendar permission was denied</string>
+    <string name="location_permission_denied">Location permission was denied</string>
+
+</resources>

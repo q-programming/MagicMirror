@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_home"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:alpha="1"
+    android:keepScreenOn="true"
+    android:paddingLeft="@dimen/outside_padding"
+    android:paddingRight="@dimen/outside_padding">
+
+    <!-- Weather -->
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="@dimen/weather_icon_size"
+        android:layout_height="@dimen/weather_icon_size"
+        android:layout_alignBottom="@id/temperature"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="15dp"
+        android:layout_toRightOf="@id/temperature"
+        android:contentDescription="@string/weather_icon"
+        android:scaleType="fitXY"
+        tools:src="@drawable/partly_cloudy_day" />
+
+    <ImageView
+        android:id="@+id/compass"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/weather_summary"
+        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@+id/air_quality"
+        android:alpha="0.5"
+        android:src="@drawable/compass" />
+
+    <ImageView
+        android:id="@+id/windDirection"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_alignStart="@+id/compass"
+        android:layout_alignTop="@+id/compass"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="13dp"
+        android:src="@drawable/pointer" />
+
+    <TableLayout
+        android:layout_width="1001dp"
+        android:layout_height="318dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="11dp"
+        android:layout_marginBottom="1dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="5dp">
+
+            <TextView
+                android:id="@+id/event_date_6"
+                style="@style/EventsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/calendar"
+                android:drawablePadding="@dimen/icon_margin"
+                android:text="17 Mar" />
+
+            <TextView
+                android:id="@+id/event_hour_6"
+                style="@style/EventsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="18:00-18:01" />
+
+            <TextView
+                android:id="@+id/event_title_6"
+                style="@style/EventsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="Event name" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="5dp">
+
+            <TextView
+                android:id="@+id/event_date_5"
+                style="@style/EventsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/calendar"
+                android:drawablePadding="@dimen/icon_margin"
+                android:text="17 Mar" />
+
+            <TextView
+                android:id="@+id/event_hour_5"
+                style="@style/EventsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="18:00-18:01" />
+
+            <TextView
+                android:id="@+id/event_title_5"
+                style="@style/EventsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="Event name" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="5dp">
+
+            <TextView
+                android:id="@+id/event_date_4"
+                style="@style/EventsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/calendar"
+                android:drawablePadding="@dimen/icon_margin"
+                android:text="17 Mar" />
+
+            <TextView
+                android:id="@+id/event_hour_4"
+                style="@style/EventsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="18:00-18:01" />
+
+            <TextView
+                android:id="@+id/event_title_4"
+                style="@style/EventsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="Event name" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="5dp">
+
+            <TextView
+                android:id="@+id/event_date_3"
+                style="@style/EventsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/calendar"
+                android:drawablePadding="@dimen/icon_margin"
+                android:text="17 Mar" />
+
+            <TextView
+                android:id="@+id/event_hour_3"
+                style="@style/EventsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="18:00-18:01" />
+
+            <TextView
+                android:id="@+id/event_title_3"
+                style="@style/EventsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="Event name" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="5dp">
+
+            <TextView
+                android:id="@+id/event_date_2"
+                style="@style/EventsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/calendar"
+                android:drawablePadding="@dimen/icon_margin"
+                android:text="17 Mar" />
+
+            <TextView
+                android:id="@+id/event_hour_2"
+                style="@style/EventsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="18:00-18:01" />
+
+            <TextView
+                android:id="@+id/event_title_2"
+                style="@style/EventsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="Event name" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="5dp">
+
+            <TextView
+                android:id="@+id/event_date_1"
+                style="@style/EventsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/calendar"
+                android:drawablePadding="@dimen/icon_margin"
+                android:text="17 Mar" />
+
+            <TextView
+                android:id="@+id/event_hour_1"
+                style="@style/EventsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="18:00-18:01" />
+
+            <TextView
+                android:id="@+id/event_title_1"
+                style="@style/EventsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="Event Name" />
+
+        </TableRow>
+    </TableLayout>
+
+    <TextClock
+        android:id="@+id/time"
+        style="@style/TimeStyleCompact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="25dp"
+        android:format12Hour="h\uee01mm"
+        android:format24Hour="H\uee01mm"
+        android:gravity="right"
+        tools:text="12\uee0134" />
+
+    <TextClock
+        android:id="@+id/date"
+        style="@style/DateStyle"
+        android:layout_width="452dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/time"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
+        android:format12Hour="EEEE MMMM d"
+        android:format24Hour="EEEE d MMMM"
+        android:gravity="right"
+        tools:text="Sunday March 4" />
+
+    <!-- Time and date -->
+    <TextView
+        android:id="@+id/temperature"
+        style="@style/TemperatureStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:gravity="left"
+        tools:text="12°" />
+
+    <!-- Body -->
+
+    <!-- News -->
+
+    <!-- Commute -->
+
+    <TextView
+        android:id="@+id/weather_summary"
+        style="@style/WeatherTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/temperature"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="@dimen/weather_summary_margin"
+        android:gravity="left"
+        android:maxWidth="380dp"
+        tools:text="Mostly cloudy until tomorrow evening" />
+
+    <TextView
+        android:id="@+id/precipitation"
+        style="@style/WeatherTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/weather_summary"
+        android:layout_alignParentLeft="true"
+        android:drawableLeft="@drawable/umbrella"
+        android:drawablePadding="@dimen/icon_margin"
+        tools:text="6%" />
+
+    <TextView
+        android:id="@+id/air_quality"
+        style="@style/WeatherTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/weather_summary"
+        android:layout_marginLeft="@dimen/air_quality_margin"
+        android:layout_toRightOf="@id/precipitation"
+        android:drawableLeft="@drawable/aqi_usg"
+        android:drawablePadding="@dimen/icon_margin"
+        tools:text="123" />
+
+    <TextView
+        android:id="@+id/windSpeed"
+        style="@style/WeatherTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/weather_summary"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/compass"
+        android:text="@string/_10kmh"
+        android:textColor="#FFFFFF" />
+
+</RelativeLayout>

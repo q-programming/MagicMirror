@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+  <!-- Get the AccuWeather API key from: https://developer.accuweather.com -->
+  <string name="accu_weather_api_key" translatable="false">FdRTwoeGvHIKXqGokxrQKOhWwzvP8K1r</string>
+
+  <!-- Get the AirNow API key from: https://docs.airnowapi.org -->
+  <string name="air_now_api_key" translatable="false">D2175220-AB82-4387-9068-660412FF1B0F</string>
+  <string name="air_api_key" translatable="false">bb179f76-b8e3-4403-a456-68cfeee8fe15</string>
+  <!-- Get the Google Maps Directions API key from: https://developers.google.com/maps/documentation/directions/ -->
+  <string name="google_maps_directions_api_key" translatable="false">GOOGLE_MAPS_DIRECTIONS_API_KEY</string>
+</resources>

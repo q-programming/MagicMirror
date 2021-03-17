@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Magic Mirror</string>
+    <string name="unknown_ip_address">Nieznany adres IP</string>
+    <string name="wind_pointer">Wskażnik wiatru</string>
+    <string name="weather_icon">Ikona pogody</string>
+    <string name="wind_direction_compass">Kierunek wiatru</string>
+    <string name="_10kmh">10 km/h</string>
+    <string name="today">Dziś</string>
+    <string name="tomorrow">Jutro</string>
+    <string name="stopping">Zatrzymywanie Mirror Home</string>
+    <string name="calendar_permission_denied">Upranienia do kalndarza zostały odrzucone</string>
+    <string name="location_permission_denied">Uprawnienia do lokacji zostały odrzucone</string>
+</resources>
