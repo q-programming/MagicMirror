@@ -5,6 +5,8 @@
     <item name="android:background">#ff000000</item>
     <item name="android:windowFullscreen">true</item>
     <item name="android:windowContentOverlay">@null</item>
+    <item name="android:isSticky">true</item>
+    <item name="android:immersive">true</item>
   </style>
 
   <style name="BaseTextStyle">

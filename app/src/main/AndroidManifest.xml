@@ -4,7 +4,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/home"
         android:label="@string/app_name"
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
@@ -32,17 +32,6 @@
         <service
             android:name=".service.DataService"
             android:foregroundServiceType="dataSync" />
-        <service
-            android:name=".service.HomeDreamService"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:permission="android.permission.BIND_DREAM_SERVICE" >
-            <intent-filter>
-                <action android:name="android.service.dreams.DreamService" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </service>
-
     </application>
 
     <uses-feature
@@ -53,4 +42,5 @@
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 </manifest>

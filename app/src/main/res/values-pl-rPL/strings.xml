@@ -8,7 +8,7 @@
     <string name="_10kmh">10 km/h</string>
     <string name="today">Dziś</string>
     <string name="tomorrow">Jutro</string>
-    <string name="stopping">Zatrzymywanie Mirror Home</string>
+    <string name="hiding">Minimalizuje Mirror Home</string>
     <string name="calendar_permission_denied">Upranienia do kalndarza zostały odrzucone</string>
     <string name="location_permission_denied">Uprawnienia do lokacji zostały odrzucone</string>
 </resources>

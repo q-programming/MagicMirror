@@ -9,11 +9,14 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowInsets;
+import android.view.WindowInsetsController;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,7 +55,7 @@ import static pl.qprogramming.magicmirror.events.EventsId.EVENT_TITLE_VIEW_IDS_O
  */
 public class HomeActivity extends Activity {
 
-    public static final int TOGGLE_PERIOD = 2;
+    public static final int TOGGLE_PERIOD = 1;
 
     private final ScheduledExecutorService scheduledBackgroundExecutor =
             Executors.newSingleThreadScheduledExecutor();
@@ -78,7 +81,7 @@ public class HomeActivity extends Activity {
     private final View.OnClickListener doubleClickListener = new DoubleClickListener() {
         @Override
         public void onDoubleClick(View v) {
-            Toast.makeText(getApplicationContext(), R.string.stopping, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.hiding, Toast.LENGTH_SHORT).show();
             moveTaskToBack(true);
         }
     };
@@ -224,6 +227,9 @@ public class HomeActivity extends Activity {
         val serviceIntent = new Intent(this, DataService.class);
         startForegroundService(serviceIntent);
         bindService(serviceIntent, mConnection, Context.BIND_AUTO_CREATE);
+
+
+
     }
 
     @Override
@@ -232,6 +238,7 @@ public class HomeActivity extends Activity {
             toggleTask = scheduledBackgroundExecutor.scheduleAtFixedRate(this::toggleView, 0, TOGGLE_PERIOD, TimeUnit.MINUTES);
         }
         super.onStart();
+        hideNavigation();
     }
 
     @Override
@@ -258,6 +265,7 @@ public class HomeActivity extends Activity {
         registerReceiver(receiver, new IntentFilter(EventType.EVENTS_NOTIFICATION.getCode()));
         registerReceiver(receiver, new IntentFilter(EventType.AIR_NOTIFICATION.getCode()));
         registerReceiver(receiver, new IntentFilter(EventType.WEATHER_NOTIFICATION.getCode()));
+        hideNavigation();
     }
 
     private void toggleView() {
@@ -280,6 +288,32 @@ public class HomeActivity extends Activity {
                 findViewById(R.id.activity_home_o).animate().alpha(1f).setDuration(3000);
             }
         });
+    }
+
+    private void hideNavigation(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            getWindow().setDecorFitsSystemWindows(false);
+            val controller = getWindow().getInsetsController();
+            if (controller != null) {
+                controller.hide(WindowInsets.Type.statusBars() | WindowInsets.Type.navigationBars());
+                controller.setSystemBarsBehavior(WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
+            }
+        } else {
+            // All below using to hide navigation bar
+            val currentApiVersion = Build.VERSION.SDK_INT;
+            val flags = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+
+            // This work only for android 4.4+
+            if (currentApiVersion >= Build.VERSION_CODES.KITKAT) {
+                val decorView = getWindow().getDecorView();
+                decorView.setSystemUiVisibility(flags);
+            }
+        }
     }
 
     private void setActivityHome() {

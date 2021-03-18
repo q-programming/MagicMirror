@@ -10,7 +10,7 @@
     <string name="_10kmh">10 km/h</string>
     <string name="today">Today</string>
     <string name="tomorrow">Tomorrow</string>
-    <string name="stopping">Stopping mirror home</string>
+    <string name="hiding">Minimising mirror home</string>
     <string name="calendar_permission_denied">Calendar permission was denied</string>
     <string name="location_permission_denied">Location permission was denied</string>
 

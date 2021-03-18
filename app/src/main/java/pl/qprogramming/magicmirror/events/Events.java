@@ -27,6 +27,7 @@ import lombok.Getter;
 import lombok.val;
 import lombok.var;
 import pl.qprogramming.magicmirror.service.DataUpdater;
+import pl.qprogramming.magicmirror.utils.MarqueTextView;
 
 /**
  * A helper class to read calendar events
@@ -132,7 +133,7 @@ public class Events extends DataUpdater<List<Events.CalendarEvent>> {
     public static class EventsViewsWrapper {
         private final TextView day;
         private final TextView hour;
-        private final TextView title;
+        private final MarqueTextView title;
 
         public void hideAll() {
             day.setVisibility(View.GONE);

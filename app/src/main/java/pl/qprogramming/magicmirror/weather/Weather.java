@@ -16,10 +16,10 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import lombok.AllArgsConstructor;
-import pl.qprogramming.magicmirror.utils.GeoLocation;
-import pl.qprogramming.magicmirror.utils.Network;
 import pl.qprogramming.magicmirror.R;
 import pl.qprogramming.magicmirror.service.DataUpdater;
+import pl.qprogramming.magicmirror.utils.GeoLocation;
+import pl.qprogramming.magicmirror.utils.Network;
 
 /**
  * A helper class to regularly retrieve weather information.
@@ -140,9 +140,6 @@ public class Weather extends DataUpdater<Weather.WeatherData> {
 
         // Get the latest data from the AccuWeather API.
         try {
-//      if(true){//for now disable weather
-//        return null;
-//      }
             String currentRequestUrl = getCurrentRequestUrl(locationKey);
             String forecastRequestUrl = getForecastRequestUrl(locationKey);
 
