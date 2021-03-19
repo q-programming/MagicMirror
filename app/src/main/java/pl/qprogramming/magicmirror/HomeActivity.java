@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.Executors;
@@ -95,6 +96,7 @@ public class HomeActivity extends Activity {
     private void updateCalendarEvents(List<Events.CalendarEvent> calendarEvents) {
         if (calendarEvents != null) {
             //take only first EVENT.length and reverse it's copy to fill in from bottom
+            Collections.sort(calendarEvents);
             val data = Util.reverseList(calendarEvents.subList(0, EVENT_DAY_VIEW_IDS.length));
             for (int i = 0; i < EVENT_DAY_VIEW_IDS.length; i++) {
                 if (i < data.size()) {
@@ -229,7 +231,6 @@ public class HomeActivity extends Activity {
         bindService(serviceIntent, mConnection, Context.BIND_AUTO_CREATE);
 
 
-
     }
 
     @Override
@@ -290,7 +291,7 @@ public class HomeActivity extends Activity {
         });
     }
 
-    private void hideNavigation(){
+    private void hideNavigation() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             getWindow().setDecorFitsSystemWindows(false);
             val controller = getWindow().getInsetsController();

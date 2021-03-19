@@ -18,9 +18,9 @@ import androidx.core.app.NotificationCompat;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.val;
-import pl.qprogramming.magicmirror.weather.Weather;
 import pl.qprogramming.magicmirror.air.Air;
 import pl.qprogramming.magicmirror.events.Events;
+import pl.qprogramming.magicmirror.weather.Weather;
 
 @Getter
 @Setter

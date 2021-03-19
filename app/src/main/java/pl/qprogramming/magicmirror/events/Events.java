@@ -83,7 +83,7 @@ public class Events extends DataUpdater<List<Events.CalendarEvent>> {
 
     @Data
     @Builder
-    public static class CalendarEvent implements Serializable {
+    public static class CalendarEvent implements Serializable, Comparable<CalendarEvent> {
         private final LocalDate startDate;
         private final LocalDate endDate;
         private final LocalDateTime startTime;
@@ -125,6 +125,12 @@ public class Events extends DataUpdater<List<Events.CalendarEvent>> {
                             + TIME_FORMATTER.format(startTime)
                             + "-"
                             + TIME_FORMATTER.format(endTime) + ' ' + title;
+        }
+
+
+        @Override
+        public int compareTo(CalendarEvent obj) {
+            return getStartDate().compareTo(obj.getStartDate());
         }
     }
 
@@ -218,7 +224,11 @@ public class Events extends DataUpdater<List<Events.CalendarEvent>> {
                     } else {
                         val start = convertToDateTime(cursor.getLong(INSTANCE_START_INDEX));
                         val end = convertToDateTime(cursor.getLong(INSTANCE_END_INDEX));
-                        eventBuilder.startTime(start).endTime(end);
+                        eventBuilder
+                                .startDate(start.toLocalDate())
+                                .startTime(start)
+                                .endTime(end);
+
                     }
                     calendarEvents.add(eventBuilder.build());
                 }
