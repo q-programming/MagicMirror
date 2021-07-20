@@ -97,7 +97,8 @@ public class HomeActivity extends Activity {
         if (calendarEvents != null) {
             //take only first EVENT.length and reverse it's copy to fill in from bottom
             Collections.sort(calendarEvents);
-            val data = Util.reverseList(calendarEvents.subList(0, EVENT_DAY_VIEW_IDS.length));
+            val size = calendarEvents.size() - 1;
+            val data = Util.reverseList(calendarEvents.subList(0, size > 6 ? EVENT_DAY_VIEW_IDS.length : size));
             for (int i = 0; i < EVENT_DAY_VIEW_IDS.length; i++) {
                 if (i < data.size()) {
                     val event = eventViews[i];
