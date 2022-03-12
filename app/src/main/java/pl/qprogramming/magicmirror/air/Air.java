@@ -44,12 +44,12 @@ public class Air extends DataUpdater<Air.AirData> implements Serializable{
      * A {@link Map} from the air quality index category the corresponding drawable resource ID.
      */
     private final Map<Integer, Integer> iconResources = new HashMap<Integer, Integer>() {{
-        put(1, R.drawable.aqi_good);
-        put(2, R.drawable.aqi_moderate);
-        put(3, R.drawable.aqi_usg);
-        put(4, R.drawable.aqi_unhealthy);
-        put(5, R.drawable.aqi_very_unhealthy);
-        put(6, R.drawable.aqi_hazardous);
+        put(1, R.drawable.aqi_ic_good_64);
+        put(2, R.drawable.aqi_ic_moderate_64);
+        put(3, R.drawable.aqi_ic_unhealthy_for_sensitive_64);
+        put(4, R.drawable.aqi_ic_unhealthy_64);
+        put(5, R.drawable.aqi_ic_very_unhealthy_64);
+        put(6, R.drawable.aqi_ic_hazardous_64);
     }};
 
     /**
@@ -129,7 +129,7 @@ public class Air extends DataUpdater<Air.AirData> implements Serializable{
 
 
     private AirQuality checkQuality(int aqi) {
-        if (aqi < 50) {
+        if (aqi <= 50) {
             return AirQuality.GOOD;
         } else if (50 < aqi && aqi <= 100) {
             return AirQuality.MEDIUM;

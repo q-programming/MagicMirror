@@ -6,7 +6,7 @@
 
   <!-- Get the AirNow API key from: https://docs.airnowapi.org -->
   <string name="air_now_api_key" translatable="false">D2175220-AB82-4387-9068-660412FF1B0F</string>
-  <string name="air_api_key" translatable="false">bb179f76-b8e3-4403-a456-68cfeee8fe15</string>
+  <string name="air_api_key" translatable="false">734d29e1-72b2-4505-9d55-4d282a707808</string>
   <!-- Get the Google Maps Directions API key from: https://developers.google.com/maps/documentation/directions/ -->
   <string name="google_maps_directions_api_key" translatable="false">GOOGLE_MAPS_DIRECTIONS_API_KEY</string>
 </resources>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_home"
     android:layout_width="match_parent"
@@ -30,7 +31,7 @@
         android:layout_height="40dp"
         android:layout_below="@+id/weather_summary"
         android:layout_marginStart="20dp"
-        android:layout_toEndOf="@+id/air_quality"
+        android:layout_toEndOf="@+id/precipitation"
         android:alpha="0.5"
         android:src="@drawable/compass" />
 
@@ -330,15 +331,15 @@
 
     <TextView
         android:id="@+id/air_quality"
-        style="@style/WeatherTextStyle"
+        style="@style/AirQualityStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/weather_summary"
         android:layout_marginLeft="@dimen/air_quality_margin"
-        android:layout_toRightOf="@id/precipitation"
-        android:drawableLeft="@drawable/aqi_usg"
+        android:layout_below="@id/precipitation"
         android:drawablePadding="@dimen/icon_margin"
-        tools:text="123" />
+        tools:text="123"
+        app:drawableLeftCompat="@drawable/aqi_ic_good_64"
+        />
 
     <TextView
         android:id="@+id/windSpeed"

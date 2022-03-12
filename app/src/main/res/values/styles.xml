@@ -35,6 +35,13 @@
     <item name="android:maxLines">3</item>
   </style>
 
+  <style name="AirQualityStyle" parent="BaseTextStyle">
+    <item name="android:textSize">@dimen/larger_text_size</item>
+    <item name="android:fontFamily">sans-serif-light</item>
+    <item name="android:ellipsize">none</item>
+    <item name="android:maxLines">3</item>
+  </style>
+
   <style name="CommuteTextStyle" parent="BaseTextStyle">
     <item name="android:textSize">@dimen/small_text_size</item>
     <item name="android:fontFamily">sans-serif-light</item>
