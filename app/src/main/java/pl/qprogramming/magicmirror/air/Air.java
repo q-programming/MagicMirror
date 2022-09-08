@@ -88,7 +88,7 @@ public class Air extends DataUpdater<Air.AirData> implements Serializable{
     }
 
     public enum AirQuality {
-        GOOD, MEDIUM, UNHEALTHY_SENSITIVE, UNHEALTHY, VERY_UNHEALTHY
+        GOOD, MEDIUM, UNHEALTHY_SENSITIVE, UNHEALTHY, VERY_UNHEALTHY, HAZARDOUS
     }
 
     public Air(Context context, UpdateListener<AirData> updateListener) {
@@ -133,12 +133,14 @@ public class Air extends DataUpdater<Air.AirData> implements Serializable{
             return AirQuality.GOOD;
         } else if (50 < aqi && aqi <= 100) {
             return AirQuality.MEDIUM;
-        } else if (100 < aqi && aqi < 151) {
+        } else if (100 < aqi && aqi <= 150) {
             return AirQuality.UNHEALTHY_SENSITIVE;
-        } else if (151 < aqi && aqi < 200) {
+        } else if (150 < aqi && aqi <= 200) {
             return AirQuality.UNHEALTHY;
-        } else {
+        } else if (200 < aqi && aqi < 300) {
             return AirQuality.VERY_UNHEALTHY;
+        } else {
+            return AirQuality.HAZARDOUS;
         }
     }
 

@@ -35,6 +35,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import lombok.val;
 import pl.qprogramming.magicmirror.air.Air;
+import pl.qprogramming.magicmirror.bus.Bus;
 import pl.qprogramming.magicmirror.events.Events;
 import pl.qprogramming.magicmirror.service.DataContainer;
 import pl.qprogramming.magicmirror.service.DataService;
@@ -75,6 +76,7 @@ public class HomeActivity extends Activity {
     private Weather weather;
     private Events events;
     private Air air;
+    private Bus bus;
     private Util util;
     private DataService dataService;
     private boolean serviceIsBound;
@@ -192,6 +194,7 @@ public class HomeActivity extends Activity {
             events = dataService.getEvents();
             air = dataService.getAir();
             weather = dataService.getWeather();
+            bus = dataService.getBus();
             serviceIsBound = true;
         }
 
@@ -216,9 +219,16 @@ public class HomeActivity extends Activity {
                 case WEATHER_NOTIFICATION:
                     updateWeatherData((Weather.WeatherData) container.getData());
                     break;
+                case BUS_NOTIFICATION:
+                    updateBusData((Bus.BusData) container.getData());
+                    break;
             }
         }
     };
+
+    private void updateBusData(Bus.BusData data) {
+        Log.d("MAIN","Got bus data" + data);
+    }
 
 
     @Override

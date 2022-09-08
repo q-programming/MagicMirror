@@ -6,7 +6,8 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
+import javax.annotation.Nullable;
+
 
 @SuppressLint("AppCompatCustomView")
 public class MarqueTextView extends TextView {

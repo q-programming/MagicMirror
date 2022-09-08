@@ -148,6 +148,8 @@ public class Weather extends DataUpdater<Weather.WeatherData> {
                 return null;
             }
             JSONObject forecastResponse = Network.getJsonObject(forecastRequestUrl);
+            Log.d(TAG,"Current" + currentResponse);
+            Log.d(TAG,"Forecast" + currentResponse);
             if (forecastResponse == null) {
                 return null;
             }

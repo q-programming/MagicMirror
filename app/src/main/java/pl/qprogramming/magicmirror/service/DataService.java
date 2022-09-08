@@ -19,6 +19,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.val;
 import pl.qprogramming.magicmirror.air.Air;
+import pl.qprogramming.magicmirror.bus.Bus;
 import pl.qprogramming.magicmirror.events.Events;
 import pl.qprogramming.magicmirror.weather.Weather;
 
@@ -33,6 +34,7 @@ public class DataService extends Service {
     private Weather weather;
     private Events events;
     private Air air;
+    private Bus bus;
 
     private final IBinder mBinder = new LocalBinder();
 
@@ -68,6 +70,9 @@ public class DataService extends Service {
         if (air != null) {
             air.stop();
         }
+        if (bus != null) {
+            bus.stop();
+        }
     }
 
     @Nullable
@@ -77,6 +82,7 @@ public class DataService extends Service {
         initEvents(context);
         initAir(context);
         initWeather(context);
+        initBus(context);
         return mBinder;
     }
 
@@ -92,6 +98,12 @@ public class DataService extends Service {
         if (air == null) {
             air = new Air(context, airQualityUpdateListener);
             air.start();
+        }
+    }
+    private void initBus(Context context) {
+        if (bus == null) {
+            bus = new Bus(context, busScheduleUpdateListener);
+            bus.start();
         }
     }
 
@@ -117,6 +129,9 @@ public class DataService extends Service {
 
     private final DataUpdater.UpdateListener<Weather.WeatherData> weatherUpdateListener =
             weatherData -> populateAndSend(EventType.WEATHER_NOTIFICATION, weatherData);
+
+    private final DataUpdater.UpdateListener<Bus.BusData> busScheduleUpdateListener =
+            busData -> populateAndSend(EventType.BUS_NOTIFICATION, busData);
 
 
     private void populateAndSend(EventType type, Object data) {

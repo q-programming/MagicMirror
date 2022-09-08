@@ -12,6 +12,7 @@ import lombok.Getter;
 public enum EventType {
     EVENTS_NOTIFICATION("q-programming.mirror.events"),
     AIR_NOTIFICATION("q-programming.mirror.air"),
+    BUS_NOTIFICATION("q-programming.mirror.bus"),
     WEATHER_NOTIFICATION("q-programming.mirror.weather"),
     UNKNOWN("q-programming.mirror.n/a");
 

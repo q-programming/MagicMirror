@@ -58,7 +58,7 @@ public abstract class DataUpdater<Data> {
     private Data lastData;
 
     /**
-     * When creating a new {@link net.maxbraun.mirror.DataUpdater}, provide a non-{@code null} {@link UpdateListener} and
+     * When creating a new DataUpdater, provide a non-{@code null} {@link UpdateListener} and
      * an update interval in milliseconds.
      */
     public DataUpdater(UpdateListener<Data> updateListener, long updateIntervalMillis) {
@@ -77,7 +77,7 @@ public abstract class DataUpdater<Data> {
         Log.d(getTag(), "Starting.");
 
         // Remember the task so we can cancel it later.
-        updateTask = scheduledBackgroundExecutor.scheduleAtFixedRate(() -> update(),
+        updateTask = scheduledBackgroundExecutor.scheduleAtFixedRate(this::update,
                 0, updateIntervalMillis, TimeUnit.MILLISECONDS);
     }
 
@@ -112,7 +112,7 @@ public abstract class DataUpdater<Data> {
     public void updateNow() {
         Log.d(getTag(), "Off-schedule update.");
 
-        scheduledBackgroundExecutor.execute(() -> update());
+        scheduledBackgroundExecutor.execute(this::update);
     }
 
     public Data getLastData() {
