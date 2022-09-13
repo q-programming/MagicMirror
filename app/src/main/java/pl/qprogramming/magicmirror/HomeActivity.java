@@ -31,6 +31,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import lombok.val;
@@ -45,6 +46,10 @@ import pl.qprogramming.magicmirror.utils.GeoLocation;
 import pl.qprogramming.magicmirror.utils.Util;
 import pl.qprogramming.magicmirror.weather.Weather;
 
+import static pl.qprogramming.magicmirror.bus.Bus.BUS_DEPARTURE_HOUR_IDS;
+import static pl.qprogramming.magicmirror.bus.Bus.BUS_DEPARTURE_HOUR_IDS_O;
+import static pl.qprogramming.magicmirror.bus.Bus.BUS_DEPARTURE_IDS;
+import static pl.qprogramming.magicmirror.bus.Bus.BUS_DEPARTURE_IDS_O;
 import static pl.qprogramming.magicmirror.events.EventsId.EVENT_DAY_VIEW_IDS;
 import static pl.qprogramming.magicmirror.events.EventsId.EVENT_DAY_VIEW_IDS_O;
 import static pl.qprogramming.magicmirror.events.EventsId.EVENT_TIME_VIEW_IDS;
@@ -59,19 +64,25 @@ public class HomeActivity extends Activity {
 
     public static final int TOGGLE_PERIOD = 1;
 
+    public static Locale PolishLocale = new Locale("pl,PL");
+
     private final ScheduledExecutorService scheduledBackgroundExecutor =
             Executors.newSingleThreadScheduledExecutor();
     private ScheduledFuture<?> toggleTask;
     private boolean toggleView;
 
     private TextView temperatureView;
+    private TextView maxTemperatureView;
+    private TextView minTemperatureView;
     private TextView weatherSummaryView;
     private TextView precipitationView;
     private TextView airQualityView;
     private ImageView iconView;
     private TextView windSpeedView;
     private ImageView windDirectionView;
+    private TextView busHeader;
     private final Events.EventsViewsWrapper[] eventViews = new Events.EventsViewsWrapper[EVENT_DAY_VIEW_IDS.length];
+    private final Bus.BusWrapper[] busViews = new Bus.BusWrapper[BUS_DEPARTURE_IDS.length];
 
     private Weather weather;
     private Events events;
@@ -139,7 +150,7 @@ public class HomeActivity extends Activity {
     private void updateAirData(Air.AirData airData) {
         if (airData != null) {
             // Populate the air quality index number and icon.
-            airQualityView.setText(Integer.toString(airData.aqi));
+            airQualityView.setText(String.format(PolishLocale,"%d",airData.aqi));
             airQualityView.setCompoundDrawablesWithIntrinsicBounds(airData.icon, 0, 0, 0);
             airQualityView.setVisibility(View.VISIBLE);
             windDirectionView.setRotation(airData.windDirection);
@@ -161,20 +172,25 @@ public class HomeActivity extends Activity {
     private void updateWeatherData(Weather.WeatherData data) {
         if (data != null) {
             // Populate the current temperature rounded to a whole number.
-            String temperature = String.format(Locale.FRANCE, "%d°",
-                    Math.round(data.currentTemperature));
+            String temperature = formatTemperature(data.currentTemperature);
+            String minTemperature = formatTemperature(data.minimumTemperature);
+            String maxTemperature = formatTemperature(data.maximumTemperature) + " /";
             temperatureView.setText(temperature);
+            minTemperatureView.setText(minTemperature);
+            maxTemperatureView.setText(maxTemperature);
             // Populate the 24-hour forecast summary, but strip any period at the end.
             String summary = util.stripPeriod(data.forecastSummary);
             weatherSummaryView.setText(summary);
             // Populate the precipitation probability as a percentage rounded to a whole number.
             String precipitation =
-                    String.format(Locale.FRANCE, "%d%%", Math.round(data.precipitationProbability));
+                    String.format(PolishLocale, "%d%%", Math.round(data.precipitationProbability));
             precipitationView.setText(precipitation);
             // Populate the icon for the current weather.
             iconView.setImageResource(data.currentIcon);
             // Show all the views.
             temperatureView.setVisibility(View.VISIBLE);
+            minTemperatureView.setVisibility(View.VISIBLE);
+            maxTemperatureView.setVisibility(View.VISIBLE);
             weatherSummaryView.setVisibility(View.VISIBLE);
             precipitationView.setVisibility(View.VISIBLE);
             iconView.setVisibility(View.VISIBLE);
@@ -182,10 +198,49 @@ public class HomeActivity extends Activity {
         } else {
             // Hide everything if there is no data.
             temperatureView.setVisibility(View.GONE);
+            minTemperatureView.setVisibility(View.GONE);
+            maxTemperatureView.setVisibility(View.GONE);
             weatherSummaryView.setVisibility(View.GONE);
             precipitationView.setVisibility(View.GONE);
             iconView.setVisibility(View.GONE);
         }
+    }
+
+    private void updateBusData(Bus data) {
+        if (data != null) {
+            updateBusData(data.getLastData());
+        }
+    }
+
+    private void updateBusData(Bus.BusData data) {
+        if (data != null) {
+            for (int i = 0; i < BUS_DEPARTURE_IDS.length; i++) {
+                if (i < data.schedules.size()) {
+                    val busView = busViews[i];
+                    val schedule = data.schedules.get(i);
+                    if(schedule.next > 60){
+                        busView.getDeparture().setText("");
+                    }else{
+                        busView.getDeparture().setText(String.format(PolishLocale,"%d min",schedule.next));
+                    }
+                    busView.getHour().setText(schedule.nextHour);
+                    busView.showAll();
+                } else {
+                    busViews[i].hideAll();
+                }
+            }
+            if(data.schedules.size()==0){
+                busHeader.setVisibility(View.GONE);
+            }else{
+                busHeader.setVisibility(View.VISIBLE);
+            }
+        }
+    }
+
+    @NonNull
+    private String formatTemperature(double temperature) {
+        return String.format(PolishLocale, "%d°",
+                Math.round(temperature));
     }
 
     private final ServiceConnection mConnection = new ServiceConnection() {
@@ -225,10 +280,6 @@ public class HomeActivity extends Activity {
             }
         }
     };
-
-    private void updateBusData(Bus.BusData data) {
-        Log.d("MAIN","Got bus data" + data);
-    }
 
 
     @Override
@@ -277,6 +328,7 @@ public class HomeActivity extends Activity {
         registerReceiver(receiver, new IntentFilter(EventType.EVENTS_NOTIFICATION.getCode()));
         registerReceiver(receiver, new IntentFilter(EventType.AIR_NOTIFICATION.getCode()));
         registerReceiver(receiver, new IntentFilter(EventType.WEATHER_NOTIFICATION.getCode()));
+        registerReceiver(receiver, new IntentFilter(EventType.BUS_NOTIFICATION.getCode()));
         hideNavigation();
     }
 
@@ -290,6 +342,7 @@ public class HomeActivity extends Activity {
                 updateCalendarEvents(events);
                 updateAirData(air);
                 updateWeatherData(weather);
+                updateBusData(bus);
                 findViewById(R.id.activity_home).animate().alpha(1f).setDuration(3000);
             } else {
                 setActivityHomeOdd();
@@ -297,6 +350,7 @@ public class HomeActivity extends Activity {
                 updateCalendarEvents(events);
                 updateAirData(air);
                 updateWeatherData(weather);
+                updateBusData(bus);
                 findViewById(R.id.activity_home_o).animate().alpha(1f).setDuration(3000);
             }
         });
@@ -332,6 +386,8 @@ public class HomeActivity extends Activity {
         setContentView(R.layout.activity_home);
         findViewById(R.id.activity_home).setOnClickListener(doubleClickListener);
         temperatureView = findViewById(R.id.temperature);
+        minTemperatureView = findViewById(R.id.min_temperature);
+        maxTemperatureView = findViewById(R.id.max_temperature);
         weatherSummaryView = findViewById(R.id.weather_summary);
         precipitationView = findViewById(R.id.precipitation);
         airQualityView = findViewById(R.id.air_quality);
@@ -345,12 +401,21 @@ public class HomeActivity extends Activity {
                     findViewById(EVENT_TITLE_VIEW_IDS[i])
             );
         }
+        busHeader = findViewById(R.id.bus_header);
+        for (int i = 0; i < BUS_DEPARTURE_IDS.length; i++) {
+            busViews[i] = new Bus.BusWrapper(
+                    findViewById(BUS_DEPARTURE_IDS[i]),
+                    findViewById(BUS_DEPARTURE_HOUR_IDS[i])
+            );
+        }
     }
 
     private void setActivityHomeOdd() {
         setContentView(R.layout.activity_home_o);
         findViewById(R.id.activity_home_o).setOnClickListener(doubleClickListener);
         temperatureView = findViewById(R.id.temperature_o);
+        minTemperatureView = findViewById(R.id.min_temperature_o);
+        maxTemperatureView = findViewById(R.id.max_temperature_o);
         weatherSummaryView = findViewById(R.id.weather_summary_o);
         precipitationView = findViewById(R.id.precipitation_o);
         airQualityView = findViewById(R.id.air_quality_o);
@@ -362,6 +427,13 @@ public class HomeActivity extends Activity {
                     findViewById(EVENT_DAY_VIEW_IDS_O[i]),
                     findViewById(EVENT_TIME_VIEW_IDS_O[i]),
                     findViewById(EVENT_TITLE_VIEW_IDS_O[i])
+            );
+        }
+        busHeader = findViewById(R.id.bus_header_o);
+        for (int i = 0; i < BUS_DEPARTURE_IDS_O.length; i++) {
+            busViews[i] = new Bus.BusWrapper(
+                    findViewById(BUS_DEPARTURE_IDS_O[i]),
+                    findViewById(BUS_DEPARTURE_HOUR_IDS_O[i])
             );
         }
     }

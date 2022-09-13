@@ -50,7 +50,7 @@ public class Weather extends DataUpdater<Weather.WeatherData> {
     /**
      * A cache for the location key to avoid unnecessary API requests.
      */
-    private final LruCache<Location, String> locationKeyCache = new LruCache(LOCATION_KEY_CACHE_SIZE);
+    private final LruCache<Location, String> locationKeyCache = new LruCache<>(LOCATION_KEY_CACHE_SIZE);
 
     /**
      * A {@link Map} from AccuWeather's icon number to the corresponding drawable resource ID.
@@ -109,6 +109,8 @@ public class Weather extends DataUpdater<Weather.WeatherData> {
          * The current temperature in degrees Fahrenheit.
          */
         public final double currentTemperature;
+        public final double minimumTemperature;
+        public final double maximumTemperature;
 
         /**
          * A human-readable summary of the 24-hour forecast.
@@ -148,8 +150,6 @@ public class Weather extends DataUpdater<Weather.WeatherData> {
                 return null;
             }
             JSONObject forecastResponse = Network.getJsonObject(forecastRequestUrl);
-            Log.d(TAG,"Current" + currentResponse);
-            Log.d(TAG,"Forecast" + currentResponse);
             if (forecastResponse == null) {
                 return null;
             }
@@ -178,14 +178,28 @@ public class Weather extends DataUpdater<Weather.WeatherData> {
             int currentIcon = currentResponse
                     .getJSONObject(0)
                     .getInt("WeatherIcon");
+            double minimum = forecastResponse
+                    .getJSONArray("DailyForecasts")
+                    .getJSONObject(0)
+                    .getJSONObject("Temperature")
+                    .getJSONObject("Minimum")
+                    .getInt("Value");
+            double maximum = forecastResponse
+                    .getJSONArray("DailyForecasts")
+                    .getJSONObject(0)
+                    .getJSONObject("Temperature")
+                    .getJSONObject("Maximum")
+                    .getInt("Value");
 
             return new WeatherData(
                     currentTemperature,
+                    minimum,
+                    maximum,
                     forecastSummary,
                     precipitationProbability,
                     iconResources.get(currentIcon)
             );
-        } catch (JSONException e) {
+        } catch (Exception e) {
             Log.e(TAG, "Failed to parse weather JSON.", e);
             return null;
         }
@@ -260,7 +274,7 @@ public class Weather extends DataUpdater<Weather.WeatherData> {
 
         return String.format(
                 Locale.US,
-                "%s/forecasts/v1/daily/1day/%s?apikey=%s&details=true&language=pl",
+                "%s/forecasts/v1/daily/1day/%s?apikey=%s&details=true&language=pl&metric=true",
                 ACCU_WEATHER_BASE_URL,
                 locationKey,
                 context.getString(R.string.accu_weather_api_key));

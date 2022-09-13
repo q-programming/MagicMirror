@@ -1,7 +1,8 @@
 package pl.qprogramming.magicmirror.bus;
 
-import android.content.Context;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -10,18 +11,18 @@ import org.jsoup.nodes.Element;
 import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.val;
+import pl.qprogramming.magicmirror.R;
 import pl.qprogramming.magicmirror.service.DataUpdater;
-import pl.qprogramming.magicmirror.utils.Network;
 
 /**
  * A helper class to regularly retrieve bus schedules for dedicated line and bus stop
@@ -34,9 +35,29 @@ public class Bus extends DataUpdater<Bus.BusData> implements Serializable {
     private static final long UPDATE_INTERVAL_MILLIS = TimeUnit.HOURS.toMillis(24);
     private static final String SCHEDULE_BASE_URL = "https://www.m.rozkladzik.pl/wroclaw/rozklad_jazdy.html?l=133&d=1&b=5&dt=-1";
     public static final String IN_MINUTES_BIT_PATTERN = "(\\d?\\d)";
-    private final Context context;
 
-    public static class Schedule {
+    public static final int[] BUS_DEPARTURE_IDS = new int[]{
+            R.id.bus_next_1,
+            R.id.bus_next_2,
+            R.id.bus_next_3,
+    };
+    public static final int[] BUS_DEPARTURE_HOUR_IDS = new int[]{
+            R.id.bus_next_1_h,
+            R.id.bus_next_2_h,
+            R.id.bus_next_3_h,
+    };
+    public static final int[] BUS_DEPARTURE_IDS_O = new int[]{
+            R.id.bus_next_1_o,
+            R.id.bus_next_2_o,
+            R.id.bus_next_3_o,
+    };
+    public static final int[] BUS_DEPARTURE_HOUR_IDS_O = new int[]{
+            R.id.bus_next_1_h_o,
+            R.id.bus_next_2_h_o,
+            R.id.bus_next_3_h_o,
+    };
+
+    public static class Schedule implements Serializable {
         public long next;
         public String nextHour;
 
@@ -62,9 +83,32 @@ public class Bus extends DataUpdater<Bus.BusData> implements Serializable {
         }
     }
 
+    @AllArgsConstructor
+    @Getter
+    public static class BusWrapper {
+        private final TextView departure;
+        private final TextView hour;
+
+        public void hideAll() {
+            departure.setVisibility(View.GONE);
+            hour.setVisibility(View.GONE);
+        }
+
+        public void showAll() {
+            hour.setVisibility(View.VISIBLE);
+            if (!departure.getText().equals("")) {
+                departure.setVisibility(View.VISIBLE);
+            } else {
+                departure.setVisibility(View.GONE);
+            }
+        }
+    }
+
+
     /**
      * The data structure containing List of next schedules hours
      */
+    @Getter
     public static class BusData implements Serializable {
 
         public final List<Schedule> schedules;
@@ -74,9 +118,8 @@ public class Bus extends DataUpdater<Bus.BusData> implements Serializable {
         }
     }
 
-    public Bus(Context context, UpdateListener<BusData> updateListener) {
+    public Bus(UpdateListener<BusData> updateListener) {
         super(updateListener, UPDATE_INTERVAL_MILLIS);
-        this.context = context;
     }
 
     @Override
@@ -94,13 +137,11 @@ public class Bus extends DataUpdater<Bus.BusData> implements Serializable {
                 }
             }
             //filter out all negative ( already gone ) buses, and take only next 3
-            BusData busData = new BusData(
+            return new BusData(
                     schedule
                             .stream()
-                            .filter(entry -> entry.next < 0)
-                            .limit(3)
+                            .filter(entry -> entry.next > 0).limit(3)
                             .collect(Collectors.toList()));
-            return busData;
         } catch (IOException e) {
             Log.e(TAG, "Failed to parse bus schedules.", e);
             return null;

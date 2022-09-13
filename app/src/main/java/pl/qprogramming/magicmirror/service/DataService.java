@@ -82,7 +82,7 @@ public class DataService extends Service {
         initEvents(context);
         initAir(context);
         initWeather(context);
-        initBus(context);
+        initBus();
         return mBinder;
     }
 
@@ -100,9 +100,9 @@ public class DataService extends Service {
             air.start();
         }
     }
-    private void initBus(Context context) {
+    private void initBus() {
         if (bus == null) {
-            bus = new Bus(context, busScheduleUpdateListener);
+            bus = new Bus(busScheduleUpdateListener);
             bus.start();
         }
     }

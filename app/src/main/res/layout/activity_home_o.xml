@@ -255,6 +255,95 @@
         </TableRow>
     </TableLayout>
 
+    <TableLayout
+        android:id="@+id/bus_schedule"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/date_o"
+        android:layout_marginTop="20dp"
+
+        >
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingTop="5dp">
+
+            <TextView
+                android:id="@+id/bus_header_o"
+                style="@style/EventsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_bus_24"
+                android:drawablePadding="@dimen/icon_margin"
+                android:text="Autobusy" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="5dp">
+
+            <TextView
+                android:id="@+id/bus_next_1_o"
+                style="@style/EventsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/icon_margin"
+                android:text="za 8 min" />
+
+            <TextView
+                android:id="@+id/bus_next_1_h_o"
+                style="@style/EventsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12:45" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="5dp">
+
+            <TextView
+                android:id="@+id/bus_next_2_o"
+                style="@style/EventsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/icon_margin"
+                android:text="za 20 min" />
+
+            <TextView
+                android:id="@+id/bus_next_2_h_o"
+                style="@style/EventsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="13:00" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="5dp">
+
+            <TextView
+                android:id="@+id/bus_next_3_o"
+                style="@style/EventsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/icon_margin"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/bus_next_3_h_o"
+                style="@style/EventsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="16:45" />
+        </TableRow>
+    </TableLayout>
+
     <TextClock
         android:id="@+id/date_o"
         style="@style/DateStyle"
@@ -288,21 +377,46 @@
         style="@style/TemperatureStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
         android:layout_toStartOf="@+id/icon_o"
         android:gravity="right"
         tools:text="12°" />
+
+
+    <TextView
+        android:id="@+id/min_temperature_o"
+        style="@style/SmallerTemperatureStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/temperature_o"
+        android:layout_marginEnd="10dp"
+        android:layout_toStartOf="@id/icon_o"
+        android:gravity="right"
+        tools:text="12°" />
+
+    <TextView
+        android:id="@+id/max_temperature_o"
+        style="@style/SmallerTemperatureStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/temperature_o"
+        android:layout_marginEnd="10dp"
+        android:layout_toLeftOf="@id/min_temperature_o"
+        android:gravity="right"
+        tools:text="12° /" />
+
 
     <TextView
         android:id="@+id/weather_summary_o"
         style="@style/WeatherTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/temperature_o"
+        android:layout_below="@id/max_temperature_o"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="@dimen/weather_summary_margin"
         android:gravity="right"
-        android:maxWidth="380dp"
+        android:maxWidth="500dp"
         tools:text="Mostly cloudy until tomorrow evening" />
 
     <TextView

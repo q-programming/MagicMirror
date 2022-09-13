@@ -17,6 +17,14 @@
     <item name="android:textSize">@dimen/large_text_size</item>
     <item name="android:fontFamily">sans-serif-thin</item>
   </style>
+  <style name="SmallerHeaderTemperatureStyle" parent="BaseTextStyle">
+    <item name="android:textSize">@dimen/weather_summary_margin</item>
+    <item name="android:fontFamily">sans-serif-thin</item>
+  </style>
+  <style name="SmallerTemperatureStyle" parent="BaseTextStyle">
+    <item name="android:textSize">@dimen/medium_text_size</item>
+    <item name="android:fontFamily">sans-serif-thin</item>
+  </style>
 
   <style name="WindSpeedStyle" parent="BaseTextStyle">
     <item name="android:textSize">20sp</item>
