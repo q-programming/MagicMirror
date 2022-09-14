@@ -219,7 +219,7 @@ public class HomeActivity extends Activity {
                     val busView = busViews[i];
                     val schedule = data.schedules.get(i);
                     if(schedule.next > 60){
-                        busView.getDeparture().setText("");
+                        busView.getDeparture().setText(" ");
                     }else{
                         busView.getDeparture().setText(String.format(PolishLocale,"%d min",schedule.next));
                     }
