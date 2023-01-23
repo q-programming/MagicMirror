@@ -14,6 +14,9 @@ public enum EventType {
     AIR_NOTIFICATION("q-programming.mirror.air"),
     BUS_NOTIFICATION("q-programming.mirror.bus"),
     WEATHER_NOTIFICATION("q-programming.mirror.weather"),
+    NEED_UPDATE("q-programming.mirror.update"),
+    NEED_FORCE_RELOAD("q-programming.mirror.reload"),
+    SWITCH_TIME("q-programming.mirror.switch"),
     UNKNOWN("q-programming.mirror.n/a");
 
     private static final Map<String, EventType> BY_CODE = new HashMap<>();

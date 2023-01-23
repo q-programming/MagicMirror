@@ -1,4 +1,4 @@
-package pl.qprogramming.magicmirror.service;
+package pl.qprogramming.magicmirror.data;
 
 import java.io.Serializable;
 

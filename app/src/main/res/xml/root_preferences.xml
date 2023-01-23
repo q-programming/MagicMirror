@@ -1,0 +1,31 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <Preference
+        android:layout="@layout/header" android:key="title"/>
+    <PreferenceCategory app:title="@string/settings">
+
+        <EditTextPreference
+            android:defaultValue="1"
+            app:key="app.screen.toggle"
+            app:summary="@string/settings_toggle_hint"
+            app:title="@string/settings_toggle"
+           />
+    </PreferenceCategory>
+    <PreferenceCategory app:title="@string/settings_bus">
+        <EditTextPreference
+            android:defaultValue="133"
+            android:key="app.bus.line"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/settings_bus_line"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+    <PreferenceCategory app:title="@string/settings_weather">
+        <EditTextPreference
+            android:defaultValue="1"
+            app:key="app.weather.key"
+            app:title="@string/settings_accu_key" />
+    </PreferenceCategory>
+    <PreferenceCategory app:title="@string/settings_events" android:key="events_category">
+    </PreferenceCategory>
+</PreferenceScreen>

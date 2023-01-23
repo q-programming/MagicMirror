@@ -1,4 +1,4 @@
-package pl.qprogramming.magicmirror.weather;
+package pl.qprogramming.magicmirror.data.weather;
 
 import android.content.Context;
 import android.location.Location;
@@ -46,6 +46,7 @@ public class Weather extends DataUpdater<Weather.WeatherData> {
      * The context used to load string resources.
      */
     private final Context context;
+    private String weatherKey;
 
     /**
      * A cache for the location key to avoid unnecessary API requests.
@@ -99,6 +100,11 @@ public class Weather extends DataUpdater<Weather.WeatherData> {
         put(44, R.drawable.snow);  // Mostly Cloudy w/ Snow
     }};
 
+    public void updateNow(String weatherKey) {
+        this.weatherKey = weatherKey;
+        updateNow();
+    }
+
     /**
      * The data structure containing the weather information we are interested in.
      */
@@ -128,9 +134,10 @@ public class Weather extends DataUpdater<Weather.WeatherData> {
         public final int currentIcon;
     }
 
-    public Weather(Context context, UpdateListener<WeatherData> updateListener) {
+    public Weather(Context context, UpdateListener<WeatherData> updateListener, String weatherKey) {
         super(updateListener, UPDATE_INTERVAL_MILLIS);
         this.context = context;
+        this.weatherKey = weatherKey;
     }
 
     @Override
@@ -139,7 +146,6 @@ public class Weather extends DataUpdater<Weather.WeatherData> {
 
         // Convert the location to a location key required by the API requests.
         String locationKey = getLocationKey(location);
-
         // Get the latest data from the AccuWeather API.
         try {
             String currentRequestUrl = getCurrentRequestUrl(locationKey);
@@ -226,7 +232,7 @@ public class Weather extends DataUpdater<Weather.WeatherData> {
                 Locale.FRANCE,
                 "%s/locations/v1/cities/geoposition/search?apikey=%s&q=%f,%f",
                 ACCU_WEATHER_BASE_URL,
-                context.getString(R.string.accu_weather_api_key),
+                weatherKey,
                 location.getLatitude(),
                 location.getLongitude());
 
@@ -260,7 +266,7 @@ public class Weather extends DataUpdater<Weather.WeatherData> {
                 "%s/currentconditions/v1/%s?apikey=%s",
                 ACCU_WEATHER_BASE_URL,
                 locationKey,
-                context.getString(R.string.accu_weather_api_key));
+                weatherKey);
     }
 
     /**
@@ -277,7 +283,7 @@ public class Weather extends DataUpdater<Weather.WeatherData> {
                 "%s/forecasts/v1/daily/1day/%s?apikey=%s&details=true&language=pl&metric=true",
                 ACCU_WEATHER_BASE_URL,
                 locationKey,
-                context.getString(R.string.accu_weather_api_key));
+                weatherKey);
     }
 
     @Override

@@ -11,4 +11,16 @@
     <string name="hiding">Minimalizuje Mirror Home</string>
     <string name="calendar_permission_denied">Upranienia do kalndarza zostały odrzucone</string>
     <string name="location_permission_denied">Uprawnienia do lokacji zostały odrzucone</string>
+    <string name="buses">Autobusy</string>
+    <string name="settings">Ustawienia</string>
+    <string name="settings_toggle">"Czas przełączania ekranu ( w minutach ) "</string>
+    <string name="settings_toggle_hint">Jak często aplikacja będzie przesówać tekst ( aby zapobiec wypalaniu LCD )</string>
+    <string name="settings_toggle_validation">Musi być większe niż 0</string>
+    <string name="settings_bus">Rozkład autobusów</string>
+    <string name="settings_accu_key">Klucz API Accuweather</string>
+    <string name="settings_events">Wydarzenia</string>
+    <string name="settings_events_select">Wybierz kalendarze</string>
+    <string name="dreamservice">Wygaszacz ekranu Magic Mirror</string>
+    <string name="settings_bus_line">Numer autobusu we Wrocławiu</string>
+    <string name="settings_weather">Pogoda</string>
 </resources>

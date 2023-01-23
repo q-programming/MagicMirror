@@ -1,4 +1,4 @@
-package pl.qprogramming.magicmirror.bus;
+package pl.qprogramming.magicmirror.data.bus;
 
 import android.util.Log;
 import android.view.View;
@@ -37,11 +37,12 @@ public class Bus extends DataUpdater<Bus.BusData> implements Serializable {
     public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
     private List<BusSchedule> schedules;
     private LocalDate lastUpdate;
+    private String busLine;
     /**
      * The time in milliseconds between API calls to update bus schedule
      */
     private static final long UPDATE_INTERVAL_MILLIS = TimeUnit.MINUTES.toMillis(1);
-    private static final String SCHEDULE_BASE_URL = "https://www.m.rozkladzik.pl/wroclaw/rozklad_jazdy.html?l=133&d=1&b=5&dt=";
+    private static final String SCHEDULE_BASE_URL = "https://www.m.rozkladzik.pl/wroclaw/rozklad_jazdy.html?l=%s&d=1&b=5&dt=";
     public static final String IN_MINUTES_BIT_PATTERN = "(\\d?\\d)";
 
     public static final int[] BUS_DEPARTURE_IDS = new int[]{
@@ -64,6 +65,11 @@ public class Bus extends DataUpdater<Bus.BusData> implements Serializable {
             R.id.bus_next_2_h_o,
             R.id.bus_next_3_h_o,
     };
+
+    public void updateNow(String busLine) {
+        this.busLine=busLine;
+        updateNow();
+    }
 
     @Getter
     @Setter
@@ -130,15 +136,16 @@ public class Bus extends DataUpdater<Bus.BusData> implements Serializable {
         }
     }
 
-    public Bus(UpdateListener<BusData> updateListener) {
+    public Bus(UpdateListener<BusData> updateListener, String busLine) {
         super(updateListener, UPDATE_INTERVAL_MILLIS);
+        this.busLine = busLine;
     }
 
     private List<BusSchedule> retrieveBusSchedule(LocalDate day) {
         val result = new ArrayList<BusSchedule>();
         try {
             val dayOfWeek = day.getDayOfWeek().getValue();
-            val url = SCHEDULE_BASE_URL + dayOfWeek;
+            val url = String.format(SCHEDULE_BASE_URL, busLine) + dayOfWeek;
             Log.d(TAG, "Requesting URL: " + url);
             Document document = Jsoup.connect(url).get();
             Element time_table = document.getElementById("time_table");
@@ -171,7 +178,7 @@ public class Bus extends DataUpdater<Bus.BusData> implements Serializable {
             lastUpdate = LocalDate.now();
         }
         return new BusData(schedules.stream()
-                .filter(busSchedule -> busSchedule.getDeparture().isAfter(LocalDateTime.now()))
+                .filter(busSchedule -> busSchedule.getDeparture().isAfter(LocalDateTime.now().plusMinutes(9)))
                 .limit(3)
                 .map(busSchedule -> new Bus.Schedule(busSchedule.getDeparture()))
                 .collect(Collectors.toList()));

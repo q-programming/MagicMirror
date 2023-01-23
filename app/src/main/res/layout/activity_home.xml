@@ -282,7 +282,7 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_bus_24"
                 android:drawablePadding="@dimen/icon_margin"
-                android:text="Autobusy" />
+                android:text="@string/buses" />
         </TableRow>
 
         <TableRow

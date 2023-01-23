@@ -1,4 +1,4 @@
-package pl.qprogramming.magicmirror.events;
+package pl.qprogramming.magicmirror.data.events;
 
 import android.content.ContentUris;
 import android.content.Context;
@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Set;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
@@ -36,12 +37,12 @@ public class Events extends DataUpdater<List<Events.CalendarEvent>> {
 
     // Projection array. Creating indices for this array instead of doing
 // dynamic lookups improves performance.
-    private static final String[] CALENDAR_PROJECTION = new String[]{
+    public static final String[] CALENDAR_PROJECTION = new String[]{
             CalendarContract.Calendars._ID,
             CalendarContract.Calendars.ACCOUNT_NAME,
             CalendarContract.Calendars.NAME
     };
-    private static final String[] INSTANCE_PROJECTION = new String[]{
+    public static final String[] INSTANCE_PROJECTION = new String[]{
             CalendarContract.Instances._ID,
             CalendarContract.Instances.TITLE,
             CalendarContract.Instances.DESCRIPTION,
@@ -55,8 +56,8 @@ public class Events extends DataUpdater<List<Events.CalendarEvent>> {
     };
 
     // The indices for the projection array above.
-    private static final int PROJECTION_ID_INDEX = 0;
-    private static final int PROJECTION_NAME_INDEX = 2;
+    public static final int PROJECTION_ID_INDEX = 0;
+    public static final int PROJECTION_NAME_INDEX = 2;
 
     private static final int INSTANCE_TITLE_INDEX = 1;
     private static final int INSTANCE_DESCRIPTION_INDEX = 2;
@@ -80,6 +81,7 @@ public class Events extends DataUpdater<List<Events.CalendarEvent>> {
     private static final long UPDATE_INTERVAL_MILLIS = TimeUnit.MINUTES.toMillis(5);
 
     private final Context context;
+    private Set<String> usedCalendars;
 
     @Data
     @Builder
@@ -164,9 +166,10 @@ public class Events extends DataUpdater<List<Events.CalendarEvent>> {
         this.context = context;
     }
 
-    public Events(Context context, UpdateListener<List<CalendarEvent>> updateListener) {
+    public Events(Context context, UpdateListener<List<CalendarEvent>> updateListener, Set<String> calendars) {
         super(updateListener, UPDATE_INTERVAL_MILLIS);
         this.context = context;
+        usedCalendars = calendars;
     }
 
     @Override
@@ -179,9 +182,9 @@ public class Events extends DataUpdater<List<Events.CalendarEvent>> {
         try (val calendarCursor = context.getContentResolver().query(CalendarContract.Calendars.CONTENT_URI, CALENDAR_PROJECTION, null, null, null)) {
             // queries the calendars
             while (calendarCursor.moveToNext()) {
-                val calendarName = calendarCursor.getString(PROJECTION_NAME_INDEX);
+//                val calendarName = calendarCursor.getString(PROJECTION_NAME_INDEX);
                 val calendarId = calendarCursor.getString(PROJECTION_ID_INDEX);
-                if (SHOWED_CALENDARS.contains(calendarName)) {
+                if (usedCalendars.contains(calendarId)) {
                     getCalendarEventsCount(context, calendarId, calendarEvents);
                 }
             }
@@ -189,6 +192,10 @@ public class Events extends DataUpdater<List<Events.CalendarEvent>> {
         return calendarEvents;
     }
 
+    public void updateNow(Set<String> calendars) {
+        this.usedCalendars = calendars;
+        updateNow();
+    }
 
     // this method gets a count of the events in a given calendar
     private void getCalendarEventsCount(final Context context, final String calendarId, ArrayList<CalendarEvent> calendarEvents) {

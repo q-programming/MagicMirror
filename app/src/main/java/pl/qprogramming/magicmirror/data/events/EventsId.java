@@ -1,4 +1,4 @@
-package pl.qprogramming.magicmirror.events;
+package pl.qprogramming.magicmirror.data.events;
 
 import android.widget.TextView;
 

@@ -1,4 +1,4 @@
-package pl.qprogramming.magicmirror.air;
+package pl.qprogramming.magicmirror.data.air;
 
 import android.content.Context;
 import android.location.Location;
@@ -13,10 +13,10 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import pl.qprogramming.magicmirror.R;
 import pl.qprogramming.magicmirror.service.DataUpdater;
 import pl.qprogramming.magicmirror.utils.GeoLocation;
 import pl.qprogramming.magicmirror.utils.Network;
-import pl.qprogramming.magicmirror.R;
 
 /**
  * A helper class to regularly retrieve air quality information.
