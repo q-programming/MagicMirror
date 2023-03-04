@@ -22,9 +22,13 @@
     </PreferenceCategory>
     <PreferenceCategory app:title="@string/settings_weather">
         <EditTextPreference
-            android:defaultValue="1"
+            android:defaultValue="@string/accu_weather_api_key"
             app:key="app.weather.key"
             app:title="@string/settings_accu_key" />
+        <EditTextPreference
+            android:defaultValue="@string/air_api_key"
+            app:key="app.air.key"
+            app:title="@string/settings_air_key" />
     </PreferenceCategory>
     <PreferenceCategory app:title="@string/settings_events" android:key="events_category">
     </PreferenceCategory>

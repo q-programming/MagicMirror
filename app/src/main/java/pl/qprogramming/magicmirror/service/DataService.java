@@ -100,9 +100,10 @@ public class DataService extends Service {
         val busLine = pm.getString(Property.BUS_LINE, "133");
         val toggleInterval = pm.getString(Property.TOGGLE_INTERVAL, "1");
         val weatherKey = pm.getString(Property.WEATHER_KEY, context.getString(R.string.accu_weather_api_key));
+        val airKey = pm.getString(Property.AIR_KEY, context.getString(R.string.accu_weather_api_key));
         val calendars = pm.getStringSet(Property.CALENDARS, new HashSet<>());
         initEvents(context, calendars);
-        initAir(context);
+        initAir(context, airKey);
         initWeather(context, weatherKey);
         initBus(busLine);
         registerReceiver(receiver, new IntentFilter(EventType.NEED_UPDATE.getCode()));
@@ -123,9 +124,10 @@ public class DataService extends Service {
                 val busLine = pm.getString(Property.BUS_LINE, "133");
                 val toggleInterval = pm.getString(Property.TOGGLE_INTERVAL, "1");
                 val weatherKey = pm.getString(Property.WEATHER_KEY, context.getString(R.string.accu_weather_api_key));
+                val airKey = pm.getString(Property.AIR_KEY, context.getString(R.string.air_api_key));
                 val calendars = pm.getStringSet(Property.CALENDARS, new HashSet<>());
                 Log.w(TAG, "Request to restart all data was requested");
-                air.updateNow();
+                air.updateNow(airKey);
                 events.updateNow(calendars);
                 bus.updateNow(busLine);
                 weather.updateNow(weatherKey);
@@ -156,9 +158,9 @@ public class DataService extends Service {
         }
     }
 
-    private void initAir(Context context) {
+    private void initAir(Context context, String airKey) {
         if (air == null) {
-            air = new Air(context, airQualityUpdateListener);
+            air = new Air(context, airQualityUpdateListener, airKey);
             air.start();
         }
     }

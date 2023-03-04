@@ -18,9 +18,10 @@
     <string name="settings_toggle_validation">Musi być większe niż 0</string>
     <string name="settings_bus">Rozkład autobusów</string>
     <string name="settings_accu_key">Klucz API Accuweather</string>
+    <string name="settings_air_key">Klucz API IQAir</string>
     <string name="settings_events">Wydarzenia</string>
     <string name="settings_events_select">Wybierz kalendarze</string>
     <string name="dreamservice">Wygaszacz ekranu Magic Mirror</string>
     <string name="settings_bus_line">Numer autobusu we Wrocławiu</string>
-    <string name="settings_weather">Pogoda</string>
+    <string name="settings_weather">Pogoda i Jakość powietrza</string>
 </resources>

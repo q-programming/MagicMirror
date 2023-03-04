@@ -21,9 +21,10 @@
     <string name="settings_bus">Bus schedule</string>
     <string name="settings_bus_line">Bus line in Wrocław</string>
     <string name="settings_accu_key">Accuweather API key</string>
+    <string name="settings_air_key">IQAir API key</string>
     <string name="settings_events">Events</string>
     <string name="settings_events_select">Select calendars</string>
     <string name="dreamservice">Magic Mirror screen saver</string>
-    <string name="settings_weather">Weather</string>
+    <string name="settings_weather">Weather and Air</string>
 
 </resources>

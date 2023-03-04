@@ -23,6 +23,7 @@ import pl.qprogramming.magicmirror.utils.Network;
  */
 public class Air extends DataUpdater<Air.AirData> implements Serializable{
     private static final String TAG = Air.class.getSimpleName();
+    private String airKey;
 
     /**
      * The time in milliseconds between API calls to update the air quality.
@@ -51,6 +52,10 @@ public class Air extends DataUpdater<Air.AirData> implements Serializable{
         put(5, R.drawable.aqi_ic_very_unhealthy_64);
         put(6, R.drawable.aqi_ic_hazardous_64);
     }};
+    public void updateNow(String airKey) {
+        this.airKey = airKey;
+        updateNow();
+    }
 
     /**
      * The data structure containing the air quality information we are interested in.
@@ -91,9 +96,10 @@ public class Air extends DataUpdater<Air.AirData> implements Serializable{
         GOOD, MEDIUM, UNHEALTHY_SENSITIVE, UNHEALTHY, VERY_UNHEALTHY, HAZARDOUS
     }
 
-    public Air(Context context, UpdateListener<AirData> updateListener) {
+    public Air(Context context, UpdateListener<AirData> updateListener, String airKey) {
         super(updateListener, UPDATE_INTERVAL_MILLIS);
         this.context = context;
+        this.airKey = airKey;
     }
 
     @Override
@@ -131,13 +137,13 @@ public class Air extends DataUpdater<Air.AirData> implements Serializable{
     private AirQuality checkQuality(int aqi) {
         if (aqi <= 50) {
             return AirQuality.GOOD;
-        } else if (50 < aqi && aqi <= 100) {
+        } else if (aqi <= 100) {
             return AirQuality.MEDIUM;
-        } else if (100 < aqi && aqi <= 150) {
+        } else if (aqi <= 150) {
             return AirQuality.UNHEALTHY_SENSITIVE;
-        } else if (150 < aqi && aqi <= 200) {
+        } else if (aqi <= 200) {
             return AirQuality.UNHEALTHY;
-        } else if (200 < aqi && aqi < 300) {
+        } else if (aqi < 300) {
             return AirQuality.VERY_UNHEALTHY;
         } else {
             return AirQuality.HAZARDOUS;
@@ -162,7 +168,7 @@ public class Air extends DataUpdater<Air.AirData> implements Serializable{
                 AIR_BASE_URL,
                 location.getLatitude(),
                 location.getLongitude(),
-                context.getString(R.string.air_api_key));
+                airKey);
     }
 
     @Override
