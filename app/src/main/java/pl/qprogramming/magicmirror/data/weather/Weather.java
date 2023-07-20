@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import lombok.AllArgsConstructor;
+import lombok.val;
 import pl.qprogramming.magicmirror.R;
 import pl.qprogramming.magicmirror.service.DataUpdater;
 import pl.qprogramming.magicmirror.utils.GeoLocation;
@@ -132,6 +133,11 @@ public class Weather extends DataUpdater<Weather.WeatherData> {
          * The resource ID of the icon representing the current weather conditions.
          */
         public final int currentIcon;
+        public final int day2Icon;
+        public final int day3icon;
+        public final int day4icon;
+
+
     }
 
     public Weather(Context context, UpdateListener<WeatherData> updateListener, String weatherKey) {
@@ -149,14 +155,20 @@ public class Weather extends DataUpdater<Weather.WeatherData> {
         // Get the latest data from the AccuWeather API.
         try {
             String currentRequestUrl = getCurrentRequestUrl(locationKey);
-            String forecastRequestUrl = getForecastRequestUrl(locationKey);
-
+            String fiveDayForecastRequestUrl = get5DayForecastRequestUrl(locationKey);
             JSONArray currentResponse = Network.getJsonArray(currentRequestUrl);
             if (currentResponse == null) {
                 return null;
             }
-            JSONObject forecastResponse = Network.getJsonObject(forecastRequestUrl);
-            if (forecastResponse == null) {
+            //uncomment for sample data
+            //val inputStream = context.getResources().openRawResource(R.raw.weather_data);
+            //byte[] buffer = new byte[inputStream.available()];
+            //inputStream.read(buffer);
+            //inputStream.close();
+            //String json = new String(buffer, "UTF-8");
+            //JSONObject fiveDayForecastResponse = new JSONObject(json);
+            JSONObject fiveDayForecastResponse = Network.getJsonObject(fiveDayForecastRequestUrl);
+            if (fiveDayForecastResponse == null) {
                 return null;
             }
 
@@ -166,15 +178,16 @@ public class Weather extends DataUpdater<Weather.WeatherData> {
                     .getJSONObject("Temperature")
                     .getJSONObject("Metric")
                     .getDouble("Value");
-            String forecastSummary = forecastResponse
+//            double currentTemperature = 20;
+            String forecastSummary = fiveDayForecastResponse
                     .getJSONObject("Headline")
                     .getString("Text");
-            double dayPrecipitationProbability = forecastResponse
+            double dayPrecipitationProbability = fiveDayForecastResponse
                     .getJSONArray("DailyForecasts")
                     .getJSONObject(0)
                     .getJSONObject("Day")
                     .getInt("PrecipitationProbability");
-            double nightPrecipitationProbability = forecastResponse
+            double nightPrecipitationProbability = fiveDayForecastResponse
                     .getJSONArray("DailyForecasts")
                     .getJSONObject(0)
                     .getJSONObject("Night")
@@ -184,32 +197,46 @@ public class Weather extends DataUpdater<Weather.WeatherData> {
             int currentIcon = currentResponse
                     .getJSONObject(0)
                     .getInt("WeatherIcon");
-            double minimum = forecastResponse
+//            int currentIcon = 3;
+            double minimum = fiveDayForecastResponse
                     .getJSONArray("DailyForecasts")
                     .getJSONObject(0)
                     .getJSONObject("Temperature")
                     .getJSONObject("Minimum")
                     .getInt("Value");
-            double maximum = forecastResponse
+            double maximum = fiveDayForecastResponse
                     .getJSONArray("DailyForecasts")
                     .getJSONObject(0)
                     .getJSONObject("Temperature")
                     .getJSONObject("Maximum")
                     .getInt("Value");
-
+            int day2Icon = getDayIcon(fiveDayForecastResponse, 1);
+            int day3Icon = getDayIcon(fiveDayForecastResponse, 2);
+            int day4Icon = getDayIcon(fiveDayForecastResponse, 3);
             return new WeatherData(
                     currentTemperature,
                     minimum,
                     maximum,
                     forecastSummary,
                     precipitationProbability,
-                    iconResources.get(currentIcon)
+                    iconResources.get(currentIcon),
+                    iconResources.get(day2Icon),
+                    iconResources.get(day3Icon),
+                    iconResources.get(day4Icon)
             );
         } catch (Exception e) {
             Log.e(TAG, "Failed to parse weather JSON.", e);
             return null;
         }
     }
+
+    private int getDayIcon(JSONObject fiveDayForecastResponse, int day) throws JSONException {
+        val dayForecast = fiveDayForecastResponse.getJSONArray("DailyForecasts").getJSONObject(day).getJSONObject("Day");
+        val icon = dayForecast.getInt("Icon");
+        val rainChance = dayForecast.getInt("RainProbability");
+        return rainChance > 50 ? 12 : icon;
+    }
+
 
     /**
      * Retrieves the location key for a particular latitude and longitude or uses a cached version or
@@ -219,14 +246,12 @@ public class Weather extends DataUpdater<Weather.WeatherData> {
         if (location == null) {
             return null;
         }
-
         // Try the cache first.
         String cachedLocationKey = locationKeyCache.get(location);
         if (cachedLocationKey != null) {
             Log.d(TAG, String.format("Using cached location key: %s -> %s", location, cachedLocationKey));
             return cachedLocationKey;
         }
-
         Log.d(TAG, "Requesting location key.");
         String requestUrl = String.format(
                 Locale.FRANCE,
@@ -235,13 +260,11 @@ public class Weather extends DataUpdater<Weather.WeatherData> {
                 weatherKey,
                 location.getLatitude(),
                 location.getLongitude());
-
         try {
             JSONObject response = Network.getJsonObject(requestUrl);
             if (response == null) {
                 return null;
             }
-
             String locationKey = response.getString("Key");
             Log.d(TAG, "Using location key: " + locationKey);
             locationKeyCache.put(location, locationKey);
@@ -281,6 +304,23 @@ public class Weather extends DataUpdater<Weather.WeatherData> {
         return String.format(
                 Locale.US,
                 "%s/forecasts/v1/daily/1day/%s?apikey=%s&details=true&language=pl&metric=true",
+                ACCU_WEATHER_BASE_URL,
+                locationKey,
+                weatherKey);
+    }
+
+    /**
+     * Creates the URL for an AccuWeather API request for the 5 days forecast based on the specified
+     * location key or {@code null} if the location is unknown.
+     */
+    private String get5DayForecastRequestUrl(String locationKey) {
+        if (locationKey == null) {
+            return null;
+        }
+
+        return String.format(
+                Locale.US,
+                "%s/forecasts/v1/daily/5day/%s?apikey=%s&details=true&language=pl&details=true&metric=true",
                 ACCU_WEATHER_BASE_URL,
                 locationKey,
                 weatherKey);

@@ -1,0 +1,1304 @@
+{
+  "Headline": {
+    "EffectiveDate": "2023-07-22T08:00:00+02:00",
+    "EffectiveEpochDate": 1690005600,
+    "Severity": 4,
+    "Text": "Przyjemnie w: sobota",
+    "Category": "mild",
+    "EndDate": null,
+    "EndEpochDate": null,
+    "MobileLink": "http://www.accuweather.com/pl/pl/stare-miasto/2723092/daily-weather-forecast/2723092?unit=c",
+    "Link": "http://www.accuweather.com/pl/pl/stare-miasto/2723092/daily-weather-forecast/2723092?unit=c"
+  },
+  "DailyForecasts": [
+    {
+      "Date": "2023-07-19T07:00:00+02:00",
+      "EpochDate": 1689742800,
+      "Sun": {
+        "Rise": "2023-07-19T04:58:00+02:00",
+        "EpochRise": 1689735480,
+        "Set": "2023-07-19T20:57:00+02:00",
+        "EpochSet": 1689793020
+      },
+      "Moon": {
+        "Rise": "2023-07-19T06:08:00+02:00",
+        "EpochRise": 1689739680,
+        "Set": "2023-07-19T22:19:00+02:00",
+        "EpochSet": 1689797940,
+        "Phase": "WaxingCrescent",
+        "Age": 2
+      },
+      "Temperature": {
+        "Minimum": {
+          "Value": 15.6,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": 28.9,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "RealFeelTemperature": {
+        "Minimum": {
+          "Value": 13.9,
+          "Unit": "C",
+          "UnitType": 17,
+          "Phrase": "Chłodno"
+        },
+        "Maximum": {
+          "Value": 30.6,
+          "Unit": "C",
+          "UnitType": 17,
+          "Phrase": "Bardzo ciepło"
+        }
+      },
+      "RealFeelTemperatureShade": {
+        "Minimum": {
+          "Value": 13.9,
+          "Unit": "C",
+          "UnitType": 17,
+          "Phrase": "Przyjemnie"
+        },
+        "Maximum": {
+          "Value": 27.2,
+          "Unit": "C",
+          "UnitType": 17,
+          "Phrase": "Bardzo ciepło"
+        }
+      },
+      "HoursOfSun": 3.7,
+      "DegreeDaySummary": {
+        "Heating": {
+          "Value": 0,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Cooling": {
+          "Value": 4,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "AirAndPollen": [
+        {
+          "Name": "AirQuality",
+          "Value": 0,
+          "Category": "Dobre",
+          "CategoryValue": 1,
+          "Type": "Ozon"
+        },
+        {
+          "Name": "Grass",
+          "Value": 0,
+          "Category": "Niskie",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "Mold",
+          "Value": 0,
+          "Category": "Niskie",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "Tree",
+          "Value": 0,
+          "Category": "Niskie",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "Ragweed",
+          "Value": 0,
+          "Category": "Niskie",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "UVIndex",
+          "Value": 7,
+          "Category": "Wysokie",
+          "CategoryValue": 3
+        }
+      ],
+      "Day": {
+        "Icon": 4,
+        "IconPhrase": "Przejściowe zachmurzenia",
+        "HasPrecipitation": false,
+        "ShortPhrase": "Chmury i słońce",
+        "LongPhrase": "Chmury i słońce",
+        "PrecipitationProbability": 25,
+        "ThunderstormProbability": 5,
+        "RainProbability": 25,
+        "SnowProbability": 0,
+        "IceProbability": 0,
+        "Wind": {
+          "Speed": {
+            "Value": 9.7,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 253,
+            "Localized": "WSW",
+            "English": "WSW"
+          }
+        },
+        "WindGust": {
+          "Speed": {
+            "Value": 38.6,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 253,
+            "Localized": "WSW",
+            "English": "WSW"
+          }
+        },
+        "TotalLiquid": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Rain": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Snow": {
+          "Value": 0,
+          "Unit": "cm",
+          "UnitType": 4
+        },
+        "Ice": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "HoursOfPrecipitation": 0,
+        "HoursOfRain": 0,
+        "HoursOfSnow": 0,
+        "HoursOfIce": 0,
+        "CloudCover": 55,
+        "Evapotranspiration": {
+          "Value": 4.6,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "SolarIrradiance": {
+          "Value": 7510.3,
+          "Unit": "W/m²",
+          "UnitType": 33
+        }
+      },
+      "Night": {
+        "Icon": 39,
+        "IconPhrase": "Zachmurzenie umiarkowane z przelotnymi opadami",
+        "HasPrecipitation": true,
+        "PrecipitationType": "Rain",
+        "PrecipitationIntensity": "Light",
+        "ShortPhrase": "Możliwy przelotny opad",
+        "LongPhrase": "Możliwy przelotny opad",
+        "PrecipitationProbability": 56,
+        "ThunderstormProbability": 11,
+        "RainProbability": 56,
+        "SnowProbability": 0,
+        "IceProbability": 0,
+        "Wind": {
+          "Speed": {
+            "Value": 8,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 309,
+            "Localized": "NW",
+            "English": "NW"
+          }
+        },
+        "WindGust": {
+          "Speed": {
+            "Value": 29,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 309,
+            "Localized": "NW",
+            "English": "NW"
+          }
+        },
+        "TotalLiquid": {
+          "Value": 1,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Rain": {
+          "Value": 1,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Snow": {
+          "Value": 0,
+          "Unit": "cm",
+          "UnitType": 4
+        },
+        "Ice": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "HoursOfPrecipitation": 1,
+        "HoursOfRain": 1,
+        "HoursOfSnow": 0,
+        "HoursOfIce": 0,
+        "CloudCover": 62,
+        "Evapotranspiration": {
+          "Value": 0.3,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "SolarIrradiance": {
+          "Value": 808.7,
+          "Unit": "W/m²",
+          "UnitType": 33
+        }
+      },
+      "Sources": [
+        "AccuWeather"
+      ],
+      "MobileLink": "http://www.accuweather.com/pl/pl/stare-miasto/2723092/daily-weather-forecast/2723092?day=1&unit=c",
+      "Link": "http://www.accuweather.com/pl/pl/stare-miasto/2723092/daily-weather-forecast/2723092?day=1&unit=c"
+    },
+    {
+      "Date": "2023-07-20T07:00:00+02:00",
+      "EpochDate": 1689829200,
+      "Sun": {
+        "Rise": "2023-07-20T05:00:00+02:00",
+        "EpochRise": 1689822000,
+        "Set": "2023-07-20T20:56:00+02:00",
+        "EpochSet": 1689879360
+      },
+      "Moon": {
+        "Rise": "2023-07-20T07:21:00+02:00",
+        "EpochRise": 1689830460,
+        "Set": "2023-07-20T22:35:00+02:00",
+        "EpochSet": 1689885300,
+        "Phase": "WaxingCrescent",
+        "Age": 3
+      },
+      "Temperature": {
+        "Minimum": {
+          "Value": 12.2,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": 23.3,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "RealFeelTemperature": {
+        "Minimum": {
+          "Value": 11.7,
+          "Unit": "C",
+          "UnitType": 17,
+          "Phrase": "Chłodno"
+        },
+        "Maximum": {
+          "Value": 23.9,
+          "Unit": "C",
+          "UnitType": 17,
+          "Phrase": "Przyjemnie"
+        }
+      },
+      "RealFeelTemperatureShade": {
+        "Minimum": {
+          "Value": 11.7,
+          "Unit": "C",
+          "UnitType": 17,
+          "Phrase": "Chłodno"
+        },
+        "Maximum": {
+          "Value": 21.1,
+          "Unit": "C",
+          "UnitType": 17,
+          "Phrase": "Przyjemnie"
+        }
+      },
+      "HoursOfSun": 4,
+      "DegreeDaySummary": {
+        "Heating": {
+          "Value": 0,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Cooling": {
+          "Value": 0,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "AirAndPollen": [
+        {
+          "Name": "AirQuality",
+          "Value": 0,
+          "Category": "Dobre",
+          "CategoryValue": 1,
+          "Type": "Ozon"
+        },
+        {
+          "Name": "Grass",
+          "Value": 15,
+          "Category": "Średnie",
+          "CategoryValue": 2
+        },
+        {
+          "Name": "Mold",
+          "Value": 0,
+          "Category": "Niskie",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "Tree",
+          "Value": 0,
+          "Category": "Niskie",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "Ragweed",
+          "Value": 0,
+          "Category": "Niskie",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "UVIndex",
+          "Value": 7,
+          "Category": "Wysokie",
+          "CategoryValue": 3
+        }
+      ],
+      "Day": {
+        "Icon": 14,
+        "IconPhrase": "Częściowo słonecznie z przelotnymi opadami",
+        "HasPrecipitation": true,
+        "PrecipitationType": "Rain",
+        "PrecipitationIntensity": "Light",
+        "ShortPhrase": "Przelotny opad",
+        "LongPhrase": "Przelotny opad",
+        "PrecipitationProbability": 55,
+        "ThunderstormProbability": 11,
+        "RainProbability": 55,
+        "SnowProbability": 0,
+        "IceProbability": 0,
+        "Wind": {
+          "Speed": {
+            "Value": 22.5,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 293,
+            "Localized": "WNW",
+            "English": "WNW"
+          }
+        },
+        "WindGust": {
+          "Speed": {
+            "Value": 41.8,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 293,
+            "Localized": "WNW",
+            "English": "WNW"
+          }
+        },
+        "TotalLiquid": {
+          "Value": 0.5,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Rain": {
+          "Value": 0.5,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Snow": {
+          "Value": 0,
+          "Unit": "cm",
+          "UnitType": 4
+        },
+        "Ice": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "HoursOfPrecipitation": 0.5,
+        "HoursOfRain": 0.5,
+        "HoursOfSnow": 0,
+        "HoursOfIce": 0,
+        "CloudCover": 53,
+        "Evapotranspiration": {
+          "Value": 3.8,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "SolarIrradiance": {
+          "Value": 7793,
+          "Unit": "W/m²",
+          "UnitType": 33
+        }
+      },
+      "Night": {
+        "Icon": 35,
+        "IconPhrase": "Zachmurzenie umiarkowane",
+        "HasPrecipitation": false,
+        "ShortPhrase": "Zachmurzenie umiarkowane",
+        "LongPhrase": "Zachmurzenie umiarkowane",
+        "PrecipitationProbability": 5,
+        "ThunderstormProbability": 0,
+        "RainProbability": 5,
+        "SnowProbability": 0,
+        "IceProbability": 0,
+        "Wind": {
+          "Speed": {
+            "Value": 8,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 226,
+            "Localized": "SW",
+            "English": "SW"
+          }
+        },
+        "WindGust": {
+          "Speed": {
+            "Value": 19.3,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 226,
+            "Localized": "SW",
+            "English": "SW"
+          }
+        },
+        "TotalLiquid": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Rain": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Snow": {
+          "Value": 0,
+          "Unit": "cm",
+          "UnitType": 4
+        },
+        "Ice": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "HoursOfPrecipitation": 0,
+        "HoursOfRain": 0,
+        "HoursOfSnow": 0,
+        "HoursOfIce": 0,
+        "CloudCover": 27,
+        "Evapotranspiration": {
+          "Value": 0.5,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "SolarIrradiance": {
+          "Value": 977.5,
+          "Unit": "W/m²",
+          "UnitType": 33
+        }
+      },
+      "Sources": [
+        "AccuWeather"
+      ],
+      "MobileLink": "http://www.accuweather.com/pl/pl/stare-miasto/2723092/daily-weather-forecast/2723092?day=2&unit=c",
+      "Link": "http://www.accuweather.com/pl/pl/stare-miasto/2723092/daily-weather-forecast/2723092?day=2&unit=c"
+    },
+    {
+      "Date": "2023-07-21T07:00:00+02:00",
+      "EpochDate": 1689915600,
+      "Sun": {
+        "Rise": "2023-07-21T05:01:00+02:00",
+        "EpochRise": 1689908460,
+        "Set": "2023-07-21T20:55:00+02:00",
+        "EpochSet": 1689965700
+      },
+      "Moon": {
+        "Rise": "2023-07-21T08:31:00+02:00",
+        "EpochRise": 1689921060,
+        "Set": "2023-07-21T22:48:00+02:00",
+        "EpochSet": 1689972480,
+        "Phase": "WaxingCrescent",
+        "Age": 4
+      },
+      "Temperature": {
+        "Minimum": {
+          "Value": 12.8,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": 23.9,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "RealFeelTemperature": {
+        "Minimum": {
+          "Value": 11.7,
+          "Unit": "C",
+          "UnitType": 17,
+          "Phrase": "Chłodno"
+        },
+        "Maximum": {
+          "Value": 25,
+          "Unit": "C",
+          "UnitType": 17,
+          "Phrase": "Przyjemnie"
+        }
+      },
+      "RealFeelTemperatureShade": {
+        "Minimum": {
+          "Value": 11.7,
+          "Unit": "C",
+          "UnitType": 17,
+          "Phrase": "Chłodno"
+        },
+        "Maximum": {
+          "Value": 22.2,
+          "Unit": "C",
+          "UnitType": 17,
+          "Phrase": "Przyjemnie"
+        }
+      },
+      "HoursOfSun": 2.6,
+      "DegreeDaySummary": {
+        "Heating": {
+          "Value": 0,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Cooling": {
+          "Value": 0,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "AirAndPollen": [
+        {
+          "Name": "AirQuality",
+          "Value": 0,
+          "Category": "Dobre",
+          "CategoryValue": 1,
+          "Type": "Ozon"
+        },
+        {
+          "Name": "Grass",
+          "Value": 13,
+          "Category": "Średnie",
+          "CategoryValue": 2
+        },
+        {
+          "Name": "Mold",
+          "Value": 300,
+          "Category": "Niskie",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "Tree",
+          "Value": 0,
+          "Category": "Niskie",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "Ragweed",
+          "Value": 0,
+          "Category": "Niskie",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "UVIndex",
+          "Value": 4,
+          "Category": "Średnie",
+          "CategoryValue": 2
+        }
+      ],
+      "Day": {
+        "Icon": 4,
+        "IconPhrase": "Przejściowe zachmurzenia",
+        "HasPrecipitation": false,
+        "ShortPhrase": "Chmury i słońce",
+        "LongPhrase": "Chmury i słońce",
+        "PrecipitationProbability": 25,
+        "ThunderstormProbability": 3,
+        "RainProbability": 25,
+        "SnowProbability": 0,
+        "IceProbability": 0,
+        "Wind": {
+          "Speed": {
+            "Value": 11.3,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 203,
+            "Localized": "SSW",
+            "English": "SSW"
+          }
+        },
+        "WindGust": {
+          "Speed": {
+            "Value": 27.4,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 203,
+            "Localized": "SSW",
+            "English": "SSW"
+          }
+        },
+        "TotalLiquid": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Rain": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Snow": {
+          "Value": 0,
+          "Unit": "cm",
+          "UnitType": 4
+        },
+        "Ice": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "HoursOfPrecipitation": 0,
+        "HoursOfRain": 0,
+        "HoursOfSnow": 0,
+        "HoursOfIce": 0,
+        "CloudCover": 68,
+        "Evapotranspiration": {
+          "Value": 3,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "SolarIrradiance": {
+          "Value": 6283.4,
+          "Unit": "W/m²",
+          "UnitType": 33
+        }
+      },
+      "Night": {
+        "Icon": 35,
+        "IconPhrase": "Zachmurzenie umiarkowane",
+        "HasPrecipitation": false,
+        "ShortPhrase": "Zachmurzenie umiarkowane",
+        "LongPhrase": "Zachmurzenie umiarkowane",
+        "PrecipitationProbability": 25,
+        "ThunderstormProbability": 3,
+        "RainProbability": 25,
+        "SnowProbability": 0,
+        "IceProbability": 0,
+        "Wind": {
+          "Speed": {
+            "Value": 9.7,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 284,
+            "Localized": "WNW",
+            "English": "WNW"
+          }
+        },
+        "WindGust": {
+          "Speed": {
+            "Value": 27.4,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 284,
+            "Localized": "WNW",
+            "English": "WNW"
+          }
+        },
+        "TotalLiquid": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Rain": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Snow": {
+          "Value": 0,
+          "Unit": "cm",
+          "UnitType": 4
+        },
+        "Ice": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "HoursOfPrecipitation": 0,
+        "HoursOfRain": 0,
+        "HoursOfSnow": 0,
+        "HoursOfIce": 0,
+        "CloudCover": 71,
+        "Evapotranspiration": {
+          "Value": 0.3,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "SolarIrradiance": {
+          "Value": 753.5,
+          "Unit": "W/m²",
+          "UnitType": 33
+        }
+      },
+      "Sources": [
+        "AccuWeather"
+      ],
+      "MobileLink": "http://www.accuweather.com/pl/pl/stare-miasto/2723092/daily-weather-forecast/2723092?day=3&unit=c",
+      "Link": "http://www.accuweather.com/pl/pl/stare-miasto/2723092/daily-weather-forecast/2723092?day=3&unit=c"
+    },
+    {
+      "Date": "2023-07-22T07:00:00+02:00",
+      "EpochDate": 1690002000,
+      "Sun": {
+        "Rise": "2023-07-22T05:02:00+02:00",
+        "EpochRise": 1689994920,
+        "Set": "2023-07-22T20:54:00+02:00",
+        "EpochSet": 1690052040
+      },
+      "Moon": {
+        "Rise": "2023-07-22T09:42:00+02:00",
+        "EpochRise": 1690011720,
+        "Set": "2023-07-22T22:59:00+02:00",
+        "EpochSet": 1690059540,
+        "Phase": "WaxingCrescent",
+        "Age": 5
+      },
+      "Temperature": {
+        "Minimum": {
+          "Value": 11.4,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": 24.5,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "RealFeelTemperature": {
+        "Minimum": {
+          "Value": 11.3,
+          "Unit": "C",
+          "UnitType": 17,
+          "Phrase": "Chłodno"
+        },
+        "Maximum": {
+          "Value": 26.9,
+          "Unit": "C",
+          "UnitType": 17,
+          "Phrase": "Bardzo ciepło"
+        }
+      },
+      "RealFeelTemperatureShade": {
+        "Minimum": {
+          "Value": 11.3,
+          "Unit": "C",
+          "UnitType": 17,
+          "Phrase": "Chłodno"
+        },
+        "Maximum": {
+          "Value": 23,
+          "Unit": "C",
+          "UnitType": 17,
+          "Phrase": "Przyjemnie"
+        }
+      },
+      "HoursOfSun": 11.2,
+      "DegreeDaySummary": {
+        "Heating": {
+          "Value": 0,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Cooling": {
+          "Value": 0,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "AirAndPollen": [
+        {
+          "Name": "AirQuality",
+          "Value": 0,
+          "Category": "Dobre",
+          "CategoryValue": 1,
+          "Type": "Ozon"
+        },
+        {
+          "Name": "Grass",
+          "Value": 56,
+          "Category": "Szkodliwe (os. wrażliwe)",
+          "CategoryValue": 3
+        },
+        {
+          "Name": "Mold",
+          "Value": 330,
+          "Category": "Dobre",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "Ragweed",
+          "Value": 0,
+          "Category": "Dobre",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "Tree",
+          "Value": 150,
+          "Category": "Szkodliwe (os. wrażliwe)",
+          "CategoryValue": 3
+        },
+        {
+          "Name": "UVIndex",
+          "Value": 7,
+          "Category": "Szkodliwe (os. wrażliwe)",
+          "CategoryValue": 3
+        }
+      ],
+      "Day": {
+        "Icon": 3,
+        "IconPhrase": "Częściowo słonecznie",
+        "HasPrecipitation": false,
+        "ShortPhrase": "Częściowo słonecznie",
+        "LongPhrase": "Częściowo słonecznie",
+        "PrecipitationProbability": 13,
+        "ThunderstormProbability": 0,
+        "RainProbability": 13,
+        "SnowProbability": 0,
+        "IceProbability": 0,
+        "Wind": {
+          "Speed": {
+            "Value": 13,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 299,
+            "Localized": "WNW",
+            "English": "WNW"
+          }
+        },
+        "WindGust": {
+          "Speed": {
+            "Value": 27.8,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 348,
+            "Localized": "NNW",
+            "English": "NNW"
+          }
+        },
+        "TotalLiquid": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Rain": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Snow": {
+          "Value": 0,
+          "Unit": "cm",
+          "UnitType": 4
+        },
+        "Ice": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "HoursOfPrecipitation": 0,
+        "HoursOfRain": 0,
+        "HoursOfSnow": 0,
+        "HoursOfIce": 0,
+        "CloudCover": 37,
+        "Evapotranspiration": {
+          "Value": 4.1,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "SolarIrradiance": {
+          "Value": 7898.3,
+          "Unit": "W/m²",
+          "UnitType": 33
+        }
+      },
+      "Night": {
+        "Icon": 35,
+        "IconPhrase": "Zachmurzenie umiarkowane",
+        "HasPrecipitation": false,
+        "ShortPhrase": "Zachmurzenie umiarkowane",
+        "LongPhrase": "Zachmurzenie umiarkowane",
+        "PrecipitationProbability": 13,
+        "ThunderstormProbability": 0,
+        "RainProbability": 13,
+        "SnowProbability": 0,
+        "IceProbability": 0,
+        "Wind": {
+          "Speed": {
+            "Value": 9.3,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 240,
+            "Localized": "WSW",
+            "English": "WSW"
+          }
+        },
+        "WindGust": {
+          "Speed": {
+            "Value": 16.7,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 164,
+            "Localized": "SSE",
+            "English": "SSE"
+          }
+        },
+        "TotalLiquid": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Rain": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Snow": {
+          "Value": 0,
+          "Unit": "cm",
+          "UnitType": 4
+        },
+        "Ice": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "HoursOfPrecipitation": 0,
+        "HoursOfRain": 0,
+        "HoursOfSnow": 0,
+        "HoursOfIce": 0,
+        "CloudCover": 60,
+        "Evapotranspiration": {
+          "Value": 0.3,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "SolarIrradiance": {
+          "Value": 514.3,
+          "Unit": "W/m²",
+          "UnitType": 33
+        }
+      },
+      "Sources": [
+        "AccuWeather"
+      ],
+      "MobileLink": "http://www.accuweather.com/pl/pl/stare-miasto/2723092/daily-weather-forecast/2723092?day=4&unit=c",
+      "Link": "http://www.accuweather.com/pl/pl/stare-miasto/2723092/daily-weather-forecast/2723092?day=4&unit=c"
+    },
+    {
+      "Date": "2023-07-23T07:00:00+02:00",
+      "EpochDate": 1690088400,
+      "Sun": {
+        "Rise": "2023-07-23T05:04:00+02:00",
+        "EpochRise": 1690081440,
+        "Set": "2023-07-23T20:52:00+02:00",
+        "EpochSet": 1690138320
+      },
+      "Moon": {
+        "Rise": "2023-07-23T10:51:00+02:00",
+        "EpochRise": 1690102260,
+        "Set": "2023-07-23T23:10:00+02:00",
+        "EpochSet": 1690146600,
+        "Phase": "WaxingCrescent",
+        "Age": 6
+      },
+      "Temperature": {
+        "Minimum": {
+          "Value": 14,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": 28.4,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "RealFeelTemperature": {
+        "Minimum": {
+          "Value": 13.4,
+          "Unit": "C",
+          "UnitType": 17,
+          "Phrase": "Chłodno"
+        },
+        "Maximum": {
+          "Value": 27.6,
+          "Unit": "C",
+          "UnitType": 17,
+          "Phrase": "Bardzo ciepło"
+        }
+      },
+      "RealFeelTemperatureShade": {
+        "Minimum": {
+          "Value": 13.4,
+          "Unit": "C",
+          "UnitType": 17,
+          "Phrase": "Chłodno"
+        },
+        "Maximum": {
+          "Value": 26.6,
+          "Unit": "C",
+          "UnitType": 17,
+          "Phrase": "Bardzo ciepło"
+        }
+      },
+      "HoursOfSun": 7.9,
+      "DegreeDaySummary": {
+        "Heating": {
+          "Value": 0,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Cooling": {
+          "Value": 3,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "AirAndPollen": [
+        {
+          "Name": "AirQuality",
+          "Value": 0,
+          "Category": "Dobre",
+          "CategoryValue": 1,
+          "Type": "Ozon"
+        },
+        {
+          "Name": "Grass",
+          "Value": 199,
+          "Category": "Szkodliwe (os. wrażliwe)",
+          "CategoryValue": 3
+        },
+        {
+          "Name": "Mold",
+          "Value": 363,
+          "Category": "Dobre",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "Ragweed",
+          "Value": 3,
+          "Category": "Dobre",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "Tree",
+          "Value": 585,
+          "Category": "Szkodliwe (os. wrażliwe)",
+          "CategoryValue": 3
+        },
+        {
+          "Name": "UVIndex",
+          "Value": 5,
+          "Category": "Średnie",
+          "CategoryValue": 2
+        }
+      ],
+      "Day": {
+        "Icon": 4,
+        "IconPhrase": "Przejściowe zachmurzenia",
+        "HasPrecipitation": false,
+        "ShortPhrase": "Okresowe zachmurzenia i słońce",
+        "LongPhrase": "Okresowe zachmurzenia i słońce",
+        "PrecipitationProbability": 3,
+        "ThunderstormProbability": 0,
+        "RainProbability": 3,
+        "SnowProbability": 0,
+        "IceProbability": 0,
+        "Wind": {
+          "Speed": {
+            "Value": 18.5,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 234,
+            "Localized": "SW",
+            "English": "SW"
+          }
+        },
+        "WindGust": {
+          "Speed": {
+            "Value": 37,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 258,
+            "Localized": "WSW",
+            "English": "WSW"
+          }
+        },
+        "TotalLiquid": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Rain": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Snow": {
+          "Value": 0,
+          "Unit": "cm",
+          "UnitType": 4
+        },
+        "Ice": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "HoursOfPrecipitation": 0,
+        "HoursOfRain": 0,
+        "HoursOfSnow": 0,
+        "HoursOfIce": 0,
+        "CloudCover": 61,
+        "Evapotranspiration": {
+          "Value": 4.8,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "SolarIrradiance": {
+          "Value": 6705.7,
+          "Unit": "W/m²",
+          "UnitType": 33
+        }
+      },
+      "Night": {
+        "Icon": 36,
+        "IconPhrase": "Przejściowe zachmurzenia",
+        "HasPrecipitation": false,
+        "ShortPhrase": "Przejaśnienia",
+        "LongPhrase": "Przejaśnienia",
+        "PrecipitationProbability": 4,
+        "ThunderstormProbability": 0,
+        "RainProbability": 4,
+        "SnowProbability": 0,
+        "IceProbability": 0,
+        "Wind": {
+          "Speed": {
+            "Value": 9.3,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 255,
+            "Localized": "WSW",
+            "English": "WSW"
+          }
+        },
+        "WindGust": {
+          "Speed": {
+            "Value": 27.8,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 327,
+            "Localized": "NNW",
+            "English": "NNW"
+          }
+        },
+        "TotalLiquid": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Rain": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Snow": {
+          "Value": 0,
+          "Unit": "cm",
+          "UnitType": 4
+        },
+        "Ice": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "HoursOfPrecipitation": 0,
+        "HoursOfRain": 0,
+        "HoursOfSnow": 0,
+        "HoursOfIce": 0,
+        "CloudCover": 70,
+        "Evapotranspiration": {
+          "Value": 1,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "SolarIrradiance": {
+          "Value": 430.4,
+          "Unit": "W/m²",
+          "UnitType": 33
+        }
+      },
+      "Sources": [
+        "AccuWeather"
+      ],
+      "MobileLink": "http://www.accuweather.com/pl/pl/stare-miasto/2723092/daily-weather-forecast/2723092?day=5&unit=c",
+      "Link": "http://www.accuweather.com/pl/pl/stare-miasto/2723092/daily-weather-forecast/2723092?day=5&unit=c"
+    }
+  ]
+}

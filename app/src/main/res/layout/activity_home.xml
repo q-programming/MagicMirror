@@ -443,12 +443,83 @@
         style="@style/AirQualityStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/forecast"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="@dimen/air_quality_margin"
-        android:layout_below="@id/precipitation"
         android:drawablePadding="@dimen/icon_margin"
-        tools:text="123"
         app:drawableLeftCompat="@drawable/aqi_ic_good_64"
-        />
+        tools:text="123" />
+
+    <TableLayout
+        android:id="@+id/forecast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/precipitation"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="10dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/day2icon"
+                android:layout_width="@dimen/weather_icon_size_small"
+                android:layout_height="@dimen/weather_icon_size_small"
+                android:contentDescription="@string/weather_icon"
+                tools:src="@drawable/partly_cloudy_day" />
+
+            <ImageView
+                android:id="@+id/day3icon"
+                android:layout_width="@dimen/weather_icon_size_small"
+                android:layout_height="@dimen/weather_icon_size_small"
+                android:contentDescription="@string/weather_icon"
+                tools:src="@drawable/partly_cloudy_day" />
+
+            <ImageView
+                android:id="@+id/day4icon"
+                android:layout_width="@dimen/weather_icon_size_small"
+                android:layout_height="@dimen/weather_icon_size_small"
+                android:contentDescription="@string/weather_icon"
+                tools:src="@drawable/partly_cloudy_day" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/day2text"
+                style="@style/daysForcast"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:gravity="center"
+                android:text="Thursday"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/day3text"
+                style="@style/daysForcast"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="15dp"
+                android:gravity="center"
+                android:text="Friday" />
+
+            <TextView
+                android:id="@+id/day4text"
+                style="@style/daysForcast"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="15dp"
+                android:gravity="center"
+                android:text="Saturday" />
+        </TableRow>
+    </TableLayout>
 
     <TextView
         android:id="@+id/windSpeed"
@@ -460,5 +531,7 @@
         android:layout_toEndOf="@+id/compass"
         android:text="@string/_10kmh"
         android:textColor="#FFFFFF" />
+
+
 
 </RelativeLayout>

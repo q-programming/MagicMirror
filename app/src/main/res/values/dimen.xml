@@ -5,6 +5,7 @@
   <dimen name="icon_margin">10dp</dimen>
   <dimen name="icon_margin_compact">20dp</dimen>
   <dimen name="weather_icon_size">96dp</dimen>
+  <dimen name="weather_icon_size_small">50dp</dimen>
   <dimen name="weather_icon_size_compact">192dp</dimen>
   <dimen name="traffic_icon_size">24dp</dimen>
   <dimen name="traffic_icon_size_compact">48dp</dimen>

@@ -17,7 +17,9 @@ import android.view.WindowInsetsController;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.TextStyle;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -52,6 +54,7 @@ public class HomeDreamService extends DreamService {
     public static final int TOGGLE_PERIOD = 1;
 
     public static Locale PolishLocale = new Locale("pl,PL");
+    private SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
     private boolean toggleView;
     private TextView temperatureView;
     private TextView maxTemperatureView;
@@ -60,6 +63,12 @@ public class HomeDreamService extends DreamService {
     private TextView precipitationView;
     private TextView airQualityView;
     private ImageView iconView;
+    private ImageView day2iconView;
+    private ImageView day3iconView;
+    private ImageView day4iconView;
+    private TextView day2text;
+    private TextView day3text;
+    private TextView day4text;
     private TextView windSpeedView;
     private ImageView windDirectionView;
     private TextView busHeader;
@@ -157,6 +166,12 @@ public class HomeDreamService extends DreamService {
             temperatureView.setText(temperature);
             minTemperatureView.setText(minTemperature);
             maxTemperatureView.setText(maxTemperature);
+            //populate days
+            val date = LocalDate.now();
+            val dow = date.getDayOfWeek();
+            day2text.setText(dow.plus(1).getDisplayName(TextStyle.FULL,PolishLocale));
+            day3text.setText(dow.plus(2).getDisplayName(TextStyle.FULL,PolishLocale));
+            day4text.setText(dow.plus(3).getDisplayName(TextStyle.FULL,PolishLocale));
             // Populate the 24-hour forecast summary, but strip any period at the end.
             String summary = util.stripPeriod(data.forecastSummary);
             weatherSummaryView.setText(summary);
@@ -164,8 +179,11 @@ public class HomeDreamService extends DreamService {
             String precipitation =
                     String.format(PolishLocale, "%d%%", Math.round(data.precipitationProbability));
             precipitationView.setText(precipitation);
-            // Populate the icon for the current weather.
+            // Populate the icon for weathers
             iconView.setImageResource(data.currentIcon);
+            day2iconView.setImageResource(data.day2Icon);
+            day3iconView.setImageResource(data.day3icon);
+            day4iconView.setImageResource(data.day4icon);
             // Show all the views.
             temperatureView.setVisibility(View.VISIBLE);
             minTemperatureView.setVisibility(View.VISIBLE);
@@ -173,6 +191,12 @@ public class HomeDreamService extends DreamService {
             weatherSummaryView.setVisibility(View.VISIBLE);
             precipitationView.setVisibility(View.VISIBLE);
             iconView.setVisibility(View.VISIBLE);
+            day2iconView.setVisibility(View.VISIBLE);
+            day3iconView.setVisibility(View.VISIBLE);
+            day4iconView.setVisibility(View.VISIBLE);
+            day2text.setVisibility(View.VISIBLE);
+            day3text.setVisibility(View.VISIBLE);
+            day4text.setVisibility(View.VISIBLE);
             windDirectionView.setVisibility(View.VISIBLE);
         } else {
             // Hide everything if there is no data.
@@ -181,6 +205,12 @@ public class HomeDreamService extends DreamService {
             maxTemperatureView.setVisibility(View.GONE);
             weatherSummaryView.setVisibility(View.GONE);
             precipitationView.setVisibility(View.GONE);
+            day2iconView.setVisibility(View.GONE);
+            day3iconView.setVisibility(View.GONE);
+            day4iconView.setVisibility(View.GONE);
+            day2text.setVisibility(View.GONE);
+            day3text.setVisibility(View.GONE);
+            day4text.setVisibility(View.GONE);
             iconView.setVisibility(View.GONE);
         }
     }
@@ -360,6 +390,12 @@ public class HomeDreamService extends DreamService {
         precipitationView = findViewById(R.id.precipitation);
         airQualityView = findViewById(R.id.air_quality);
         iconView = findViewById(R.id.icon);
+        day2iconView = findViewById(R.id.day2icon);
+        day3iconView = findViewById(R.id.day3icon);
+        day4iconView = findViewById(R.id.day4icon);
+        day2text = findViewById(R.id.day2text);
+        day3text = findViewById(R.id.day3text);
+        day4text = findViewById(R.id.day4text);
         windDirectionView = findViewById(R.id.windDirection);
         windSpeedView = findViewById(R.id.windSpeed);
         for (int i = 0; i < EVENT_DAY_VIEW_IDS.length; i++) {
@@ -387,6 +423,12 @@ public class HomeDreamService extends DreamService {
         precipitationView = findViewById(R.id.precipitation_o);
         airQualityView = findViewById(R.id.air_quality_o);
         iconView = findViewById(R.id.icon_o);
+        day2iconView = findViewById(R.id.day2icon_o);
+        day3iconView = findViewById(R.id.day3icon_o);
+        day4iconView = findViewById(R.id.day4icon_o);
+        day2text = findViewById(R.id.day2text_o);
+        day3text = findViewById(R.id.day3text_o);
+        day4text = findViewById(R.id.day4text_o);
         windDirectionView = findViewById(R.id.windDirection_o);
         windSpeedView = findViewById(R.id.windSpeed_o);
         for (int i = 0; i < EVENT_DAY_VIEW_IDS.length; i++) {
