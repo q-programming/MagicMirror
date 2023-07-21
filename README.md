@@ -4,4 +4,6 @@ I needed android "Magic Mirror" application which will show me weather , air qua
 Additionally I needed screen to shift all elements to eliminate potential screen burn
 It's not ideal but does it's job
 
-This repository bases heavily on awesome application made by [Max Braun's Smart MIrror](https://github.com/maxbbraun/mirror) please do check it! 
+This repository bases heavily on awesome application made by [Max Braun's Smart MIrror](https://github.com/maxbbraun/mirror) please do check it!
+
+Weather Icon sets by [Makin-Things](https://github.com/Makin-Things/weather-icons)

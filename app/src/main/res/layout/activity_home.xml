@@ -18,18 +18,16 @@
         android:layout_width="@dimen/weather_icon_size"
         android:layout_height="@dimen/weather_icon_size"
         android:layout_alignBottom="@id/temperature"
-        android:layout_marginLeft="5dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginStart="30dp"
         android:layout_toRightOf="@id/temperature"
         android:contentDescription="@string/weather_icon"
-        android:scaleType="fitXY"
-        tools:src="@drawable/partly_cloudy_day" />
+        tools:src="@drawable/ic_cloudy_2_day" />
 
     <ImageView
         android:id="@+id/compass"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_below="@+id/weather_summary"
+        android:layout_below="@+id/icon"
         android:layout_marginStart="20dp"
         android:layout_toEndOf="@+id/precipitation"
         android:alpha="0.5"
@@ -397,7 +395,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/temperature"
         android:layout_marginEnd="10dp"
-        android:layout_toStartOf="@id/icon"
+        android:layout_toEndOf="@id/max_temperature"
         android:gravity="right"
         tools:text="12°" />
 
@@ -407,8 +405,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/temperature"
-        android:layout_marginEnd="10dp"
-        android:layout_toLeftOf="@id/min_temperature"
+        android:layout_marginStart="20dp"
+        android:layout_alignParentStart="true"
         android:gravity="right"
         tools:text="12° /" />
 
@@ -432,62 +430,51 @@
         style="@style/WeatherTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/weather_summary"
-        android:layout_alignParentLeft="true"
+        android:layout_below="@id/icon"
+        android:layout_toEndOf="@+id/temperature"
+        android:layout_marginStart="30dp"
         android:drawableLeft="@drawable/umbrella"
         android:drawablePadding="@dimen/icon_margin"
         tools:text="6%" />
 
-    <TextView
-        android:id="@+id/air_quality"
-        style="@style/AirQualityStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/forecast"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="@dimen/air_quality_margin"
-        android:drawablePadding="@dimen/icon_margin"
-        app:drawableLeftCompat="@drawable/aqi_ic_good_64"
-        tools:text="123" />
+
 
     <TableLayout
         android:id="@+id/forecast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/precipitation"
+        android:layout_below="@+id/weather_summary"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="10dp">
+        android:layout_alignParentLeft="true">
 
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/day2icon"
                 android:layout_width="@dimen/weather_icon_size_small"
                 android:layout_height="@dimen/weather_icon_size_small"
                 android:contentDescription="@string/weather_icon"
-                tools:src="@drawable/partly_cloudy_day" />
+                tools:src="@drawable/ic_clear_day" />
 
             <ImageView
                 android:id="@+id/day3icon"
                 android:layout_width="@dimen/weather_icon_size_small"
                 android:layout_height="@dimen/weather_icon_size_small"
                 android:contentDescription="@string/weather_icon"
-                tools:src="@drawable/partly_cloudy_day" />
+                tools:src="@drawable/ic_cloudy_2_day" />
 
             <ImageView
                 android:id="@+id/day4icon"
                 android:layout_width="@dimen/weather_icon_size_small"
                 android:layout_height="@dimen/weather_icon_size_small"
                 android:contentDescription="@string/weather_icon"
-                tools:src="@drawable/partly_cloudy_day" />
+                tools:src="@drawable/ic_rainy_3_day" />
         </TableRow>
-
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/day2text"
@@ -519,6 +506,26 @@
                 android:gravity="center"
                 android:text="Saturday" />
         </TableRow>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_span="3"
+                android:gravity="center"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/air_quality"
+                    style="@style/AirQualityStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/air_quality_margin"
+                    android:drawablePadding="@dimen/icon_margin"
+                    app:drawableLeftCompat="@drawable/aqi_ic_good_64"
+                    tools:text="123" />
+            </LinearLayout>
+        </TableRow>
     </TableLayout>
 
     <TextView
@@ -526,7 +533,7 @@
         style="@style/WeatherTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/weather_summary"
+        android:layout_below="@id/icon"
         android:layout_marginStart="10dp"
         android:layout_toEndOf="@+id/compass"
         android:text="@string/_10kmh"

@@ -59,46 +59,46 @@ public class Weather extends DataUpdater<Weather.WeatherData> {
      * See: https://developer.accuweather.com/weather-icons
      */
     private final Map<Integer, Integer> iconResources = new HashMap<Integer, Integer>() {{
-        put(1, R.drawable.clear_day);  // Sunny
-        put(2, R.drawable.clear_day);  // Mostly Sunny
-        put(3, R.drawable.partly_cloudy_day);  // Partly Sunny
-        put(4, R.drawable.partly_cloudy_day);  // Intermittent Clouds
-        put(5, R.drawable.partly_cloudy_day);  // Hazy Sunshine
-        put(6, R.drawable.cloudy);  // Mostly Cloudy
-        put(7, R.drawable.cloudy);  // Cloudy
-        put(8, R.drawable.cloudy);  // Dreary (Overcast)
-        put(11, R.drawable.fog);  // Fog
-        put(12, R.drawable.rain);  // Showers
-        put(13, R.drawable.rain);  // Mostly Cloudy w/ Showers
-        put(14, R.drawable.rain);  // Partly Sunny w/ Showers
-        put(15, R.drawable.rain);  // T-Storms
-        put(16, R.drawable.rain);  // Mostly Cloudy w/ T-Storms
-        put(17, R.drawable.rain);  // Partly Sunny w/ T-Storms
-        put(18, R.drawable.rain);  // Rain
-        put(19, R.drawable.snow);  // Flurries
-        put(20, R.drawable.snow);  // Mostly Cloudy w/ Flurries
-        put(21, R.drawable.snow);  // Partly Sunny w/ Flurries
-        put(22, R.drawable.snow);  // Snow
-        put(23, R.drawable.snow);  // Mostly Cloudy w/ Snow
-        put(24, R.drawable.sleet);  // Ice
-        put(25, R.drawable.sleet);  // Sleet
-        put(26, R.drawable.sleet);  // Freezing Rain
-        put(29, R.drawable.sleet);  // Rain and Snow
+        put(1, R.drawable.ic_clear_day);  // Sunny
+        put(2, R.drawable.ic_clear_day);  // Mostly Sunny
+        put(3, R.drawable.ic_cloudy_1_day);  // Partly Sunny
+        put(4, R.drawable.ic_cloudy_2_day);  // Intermittent Clouds
+        put(5, R.drawable.ic_cloudy_2_day);  // Hazy Sunshine
+        put(6, R.drawable.ic_cloudy);  // Mostly Cloudy
+        put(7, R.drawable.ic_cloudy);  // Cloudy
+        put(8, R.drawable.ic_cloudy);  // Dreary (Overcast)
+        put(11, R.drawable.ic_fog);  // Fog
+        put(12, R.drawable.ic_rain_and_sleet_mix);  // Showers
+        put(13, R.drawable.ic_rainy_2_day);  // Mostly Cloudy w/ Showers
+        put(14, R.drawable.ic_rainy_1_day);  // Partly Sunny w/ Showers
+        put(15, R.drawable.ic_scattered_thunderstorms);  // T-Storms
+        put(16, R.drawable.ic_scattered_thunderstorms_day);  // Mostly Cloudy w/ T-Storms
+        put(17, R.drawable.ic_scattered_thunderstorms_day);  // Partly Sunny w/ T-Storms
+        put(18, R.drawable.ic_rainy_3);  // Rain
+        put(19, R.drawable.ic_snow_and_sleet_mix);  // Flurries
+        put(20, R.drawable.ic_snowy_1_day);  // Mostly Cloudy w/ Flurries
+        put(21, R.drawable.ic_snowy_1_day);  // Partly Sunny w/ Flurries
+        put(22, R.drawable.ic_snowy_3);  // Snow
+        put(23, R.drawable.ic_snowy_3);  // Mostly Cloudy w/ Snow
+        put(24, R.drawable.ic_snowy_3);  // Ice
+        put(25, R.drawable.ic_snowy_3);  // Sleet
+        put(26, R.drawable.ic_snow_and_sleet_mix);  // Freezing Rain
+        put(29, R.drawable.ic_snow_and_sleet_mix);  // Rain and Snow
         // put(30, R.drawable.hot);  // Hot
         // put(31, R.drawable.cold);  // Cold
-        put(32, R.drawable.wind);  // Windy
-        put(33, R.drawable.clear_night);  // Clear
-        put(34, R.drawable.clear_night);  // Mostly Clear
-        put(35, R.drawable.partly_cloudy_night);  // Partly Cloudy
-        put(36, R.drawable.partly_cloudy_night);  // Intermittent Clouds
+        put(32, R.drawable.ic_wind);  // Windy
+        put(33, R.drawable.ic_clear_night);  // Clear
+        put(34, R.drawable.ic_clear_night);  // Mostly Clear
+        put(35, R.drawable.ic_cloudy_1_night);  // Partly Cloudy
+        put(36, R.drawable.ic_cloudy_2_night);  // Intermittent Clouds
         put(37, R.drawable.partly_cloudy_night);  // Hazy Moonlight
-        put(38, R.drawable.partly_cloudy_night);  // Mostly Cloudy
-        put(39, R.drawable.rain);  // Partly Cloudy w/ Showers
-        put(40, R.drawable.rain);  // Mostly Cloudy w/ Showers
-        put(41, R.drawable.rain);  // Partly Cloudy w/ T-Storms
-        put(42, R.drawable.rain);  // Mostly Cloudy w/ T-Storms
-        put(43, R.drawable.snow);  // Mostly Cloudy w/ Flurries
-        put(44, R.drawable.snow);  // Mostly Cloudy w/ Snow
+        put(38, R.drawable.ic_cloudy_3_night);  // Mostly Cloudy
+        put(39, R.drawable.ic_rainy_3_night);  // Partly Cloudy w/ Showers
+        put(40, R.drawable.ic_rainy_3_night);  // Mostly Cloudy w/ Showers
+        put(41, R.drawable.ic_scattered_thunderstorms_night);  // Partly Cloudy w/ T-Storms
+        put(42, R.drawable.ic_scattered_thunderstorms_night);  // Mostly Cloudy w/ T-Storms
+        put(43, R.drawable.ic_snowy_1_night);  // Mostly Cloudy w/ Flurries
+        put(44, R.drawable.ic_snowy_3_night);  // Mostly Cloudy w/ Snow
     }};
 
     public void updateNow(String weatherKey) {
