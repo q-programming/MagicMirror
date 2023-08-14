@@ -84,8 +84,8 @@ public class Weather extends DataUpdater<Weather.WeatherData> {
         put(25, R.drawable.ic_snowy_3);  // Sleet
         put(26, R.drawable.ic_snow_and_sleet_mix);  // Freezing Rain
         put(29, R.drawable.ic_snow_and_sleet_mix);  // Rain and Snow
-        // put(30, R.drawable.hot);  // Hot
-        // put(31, R.drawable.cold);  // Cold
+        put(30, R.drawable.ic_hot);  // Hot
+        put(31, R.drawable.ic_cold);  // Cold
         put(32, R.drawable.ic_wind);  // Windy
         put(33, R.drawable.ic_clear_night);  // Clear
         put(34, R.drawable.ic_clear_night);  // Mostly Clear
@@ -171,6 +171,7 @@ public class Weather extends DataUpdater<Weather.WeatherData> {
             if (fiveDayForecastResponse == null) {
                 return null;
             }
+            Log.d(TAG,fiveDayForecastResponse.toString());
 
             // Parse the data we are interested in from the response JSON.
             double currentTemperature = currentResponse
