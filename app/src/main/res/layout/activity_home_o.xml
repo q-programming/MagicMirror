@@ -488,28 +488,31 @@
                 android:gravity="center"
                 android:text="Saturday" />
         </TableRow>
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_span="3"
-                android:gravity="center"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/air_quality_o"
-                    style="@style/AirQualityStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/air_quality_margin"
-                    android:drawablePadding="@dimen/icon_margin"
-                    tools:text="123"
-                    app:drawableLeftCompat="@drawable/aqi_ic_good_64" />
-            </LinearLayout>
-
-        </TableRow>
     </TableLayout>
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/air_quality_margin"
+        android:layout_below="@+id/weather_summary_o"
+        android:layout_toStartOf="@+id/forecast_o"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_span="3"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/air_quality_o"
+                style="@style/AirQualityStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/icon_margin"
+                tools:text="123"
+                app:drawableLeftCompat="@drawable/aqi_ic_good_64" />
+        </LinearLayout>
+
+    </TableRow>
 
     <TextView
         android:id="@+id/windSpeed_o"
