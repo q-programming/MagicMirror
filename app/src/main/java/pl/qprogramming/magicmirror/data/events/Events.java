@@ -26,7 +26,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.val;
-import lombok.var;
 import pl.qprogramming.magicmirror.service.DataUpdater;
 import pl.qprogramming.magicmirror.utils.MarqueTextView;
 

@@ -17,11 +17,23 @@
     <string name="settings_toggle_hint">Jak często aplikacja będzie przesówać tekst ( aby zapobiec wypalaniu LCD )</string>
     <string name="settings_toggle_validation">Musi być większe niż 0</string>
     <string name="settings_bus">Rozkład autobusów</string>
-    <string name="settings_accu_key">Klucz API Accuweather</string>
+    <string name="settings_accu_key">Klucz API Tommorow.io</string>
     <string name="settings_air_key">Klucz API IQAir</string>
     <string name="settings_events">Wydarzenia</string>
     <string name="settings_events_select">Wybierz kalendarze</string>
     <string name="dreamservice">Wygaszacz ekranu Magic Mirror</string>
     <string name="settings_bus_line">Numer autobusu we Wrocławiu</string>
     <string name="settings_weather">Pogoda i Jakość powietrza</string>
+    <string name="settings_logs">Logi</string>
+    <string name="settings_autostart_category">Uruchamianie</string>
+    <string name="settings_autostart">Uruchom przy starcie systemu</string>
+    <string name="settings_autostart_summary">Automatycznie uruchamiaj aplikację po starcie urządzenia. Wymaga zgody na wyświetlanie nad innymi aplikacjami.</string>
+    <string name="settings_autostart_delay">Opóźnienie uruchomienia po starcie (w minutach)</string>
+    <string name="autostart_overlay_permission">Zezwól na „Wyświetlanie nad innymi aplikacjami”, aby aplikacja mogła uruchomić się przy starcie</string>
+    <string name="settings_logs_view">Pokaż logi</string>
+    <string name="settings_logs_summary">Wyświetl logi aplikacji (błędy, nieudane zapytania, wygasłe klucze)</string>
+    <string name="logs_refresh">Odśwież</string>
+    <string name="logs_copy">Kopiuj</string>
+    <string name="logs_copied">Skopiowano logi do schowka</string>
+    <string name="logs_empty">Brak logów</string>
 </resources>

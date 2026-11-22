@@ -3,8 +3,10 @@ package pl.qprogramming.magicmirror.settings;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.CalendarContract;
+import android.provider.Settings;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -24,7 +26,6 @@ import androidx.preference.MultiSelectListPreference;
 import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceFragmentCompat;
 import lombok.val;
-import lombok.var;
 import pl.qprogramming.magicmirror.R;
 import pl.qprogramming.magicmirror.service.EventType;
 import pl.qprogramming.magicmirror.utils.GeoLocation;
@@ -67,7 +68,31 @@ public class SettingsActivity extends AppCompatActivity {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
             val interval = (EditTextPreference) findPreference(Property.TOGGLE_INTERVAL);
             intervalButtonValidation(interval);
+            intervalButtonValidation((EditTextPreference) findPreference(Property.AUTOSTART_DELAY));
+            val autostart = findPreference(Property.AUTOSTART);
+            if (autostart != null) {
+                autostart.setOnPreferenceChangeListener((preference, newValue) -> {
+                    requestOverlayPermission((Boolean) newValue);
+                    return true;
+                });
+            }
             calendarEventsPicker();
+            val logs = findPreference("app.logs.view");
+            if (logs != null) {
+                logs.setOnPreferenceClickListener(preference -> {
+                    startActivity(new Intent(requireContext(), LogActivity.class));
+                    return true;
+                });
+            }
+        }
+
+        // Android 10+ blocks background activity starts unless the app may draw over other apps.
+        private void requestOverlayPermission(boolean enabled) {
+            if (enabled && !Settings.canDrawOverlays(requireContext())) {
+                Toast.makeText(requireContext(), R.string.autostart_overlay_permission, Toast.LENGTH_LONG).show();
+                startActivity(new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                        Uri.parse("package:" + requireContext().getPackageName())));
+            }
         }
 
         private void calendarEventsPicker() {

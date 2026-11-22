@@ -100,7 +100,13 @@ public abstract class DataUpdater<Data> {
     private void update() {
         Log.d(getTag(), "Updating...");
 
-        final Data data = getData();
+        Data result = null;
+        try {
+            result = getData();
+        } catch (Exception e) {
+            Log.e(getTag(), "Failed to get data", e);
+        }
+        final Data data = result;
         mainHandler.post(() -> updateListener.onUpdate(data));
         lastData = data;
         Log.d(getTag(), "Updated.");

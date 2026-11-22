@@ -105,6 +105,10 @@ public class Air extends DataUpdater<Air.AirData> implements Serializable{
     @Override
     protected AirData getData() {
         Location location = GeoLocation.getLocation(context);
+        if (location == null) {
+            Log.e(TAG, "Location not available");
+            return null;
+        }
         Log.d(TAG, "Using location for air quality: " + location);
         // Get the latest data from the AirNow API.
         try {

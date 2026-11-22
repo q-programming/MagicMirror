@@ -32,4 +32,23 @@
     </PreferenceCategory>
     <PreferenceCategory app:title="@string/settings_events" android:key="events_category">
     </PreferenceCategory>
+    <PreferenceCategory app:title="@string/settings_autostart_category">
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            app:key="app.autostart"
+            app:summary="@string/settings_autostart_summary"
+            app:title="@string/settings_autostart" />
+        <EditTextPreference
+            android:defaultValue="1"
+            app:dependency="app.autostart"
+            app:key="app.autostart.delay"
+            app:title="@string/settings_autostart_delay"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+    <PreferenceCategory app:title="@string/settings_logs">
+        <Preference
+            app:key="app.logs.view"
+            app:summary="@string/settings_logs_summary"
+            app:title="@string/settings_logs_view" />
+    </PreferenceCategory>
 </PreferenceScreen>

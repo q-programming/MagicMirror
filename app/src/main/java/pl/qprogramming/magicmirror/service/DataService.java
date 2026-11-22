@@ -99,7 +99,7 @@ public class DataService extends Service {
         val pm = PreferenceManager.getDefaultSharedPreferences(context);
         val busLine = pm.getString(Property.BUS_LINE, "133");
         val toggleInterval = pm.getString(Property.TOGGLE_INTERVAL, "1");
-        val weatherKey = pm.getString(Property.WEATHER_KEY, context.getString(R.string.accu_weather_api_key));
+        val weatherKey = pm.getString(Property.WEATHER_KEY, context.getString(R.string.tommorowio_weather_api_key));
         val airKey = pm.getString(Property.AIR_KEY, context.getString(R.string.accu_weather_api_key));
         val calendars = pm.getStringSet(Property.CALENDARS, new HashSet<>());
         initEvents(context, calendars);
@@ -108,7 +108,7 @@ public class DataService extends Service {
         initBus(busLine);
         registerReceiver(receiver, new IntentFilter(EventType.NEED_UPDATE.getCode()));
         registerReceiver(receiver, new IntentFilter(EventType.NEED_FORCE_RELOAD.getCode()));
-        toggleTask = scheduledBackgroundExecutor.scheduleAtFixedRate(() -> {
+        toggleTask = scheduledBackgroundExecutor.scheduleWithFixedDelay(() -> {
             Intent toggleIntent = new Intent(EventType.SWITCH_TIME.getCode());
             sendBroadcast(toggleIntent);
         }, 0, Integer.parseInt(toggleInterval), TimeUnit.MINUTES);
@@ -123,7 +123,7 @@ public class DataService extends Service {
                 val pm = PreferenceManager.getDefaultSharedPreferences(context);
                 val busLine = pm.getString(Property.BUS_LINE, "133");
                 val toggleInterval = pm.getString(Property.TOGGLE_INTERVAL, "1");
-                val weatherKey = pm.getString(Property.WEATHER_KEY, context.getString(R.string.accu_weather_api_key));
+                val weatherKey = pm.getString(Property.WEATHER_KEY, context.getString(R.string.tommorowio_weather_api_key));
                 val airKey = pm.getString(Property.AIR_KEY, context.getString(R.string.air_api_key));
                 val calendars = pm.getStringSet(Property.CALENDARS, new HashSet<>());
                 Log.w(TAG, "Request to restart all data was requested");
@@ -133,7 +133,7 @@ public class DataService extends Service {
                 weather.updateNow(weatherKey);
                 if (toggleTask != null) {
                     toggleTask.cancel(true);
-                    toggleTask = scheduledBackgroundExecutor.scheduleAtFixedRate(() -> {
+                    toggleTask = scheduledBackgroundExecutor.scheduleWithFixedDelay(() -> {
                         Intent toggleIntent = new Intent(EventType.SWITCH_TIME.getCode());
                         sendBroadcast(toggleIntent);
                     }, 0, Integer.parseInt(toggleInterval), TimeUnit.MINUTES);

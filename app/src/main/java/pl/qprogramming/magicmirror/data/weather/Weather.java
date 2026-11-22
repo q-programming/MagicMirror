@@ -5,14 +5,18 @@ import android.location.Location;
 import android.util.Log;
 import android.util.LruCache;
 
+import com.luckycatlabs.sunrisesunset.SunriseSunsetCalculator;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 import lombok.AllArgsConstructor;
@@ -58,7 +62,7 @@ public class Weather extends DataUpdater<Weather.WeatherData> {
      * A {@link Map} from AccuWeather's icon number to the corresponding drawable resource ID.
      * See: https://developer.accuweather.com/weather-icons
      */
-    private final Map<Integer, Integer> iconResources = new HashMap<Integer, Integer>() {{
+    private final Map<Integer, Integer> accuWeatherIconMap = new HashMap<>() {{
         put(1, R.drawable.ic_clear_day);  // Sunny
         put(2, R.drawable.ic_clear_day);  // Mostly Sunny
         put(3, R.drawable.ic_cloudy_1_day);  // Partly Sunny
@@ -100,6 +104,95 @@ public class Weather extends DataUpdater<Weather.WeatherData> {
         put(43, R.drawable.ic_snowy_1_night);  // Mostly Cloudy w/ Flurries
         put(44, R.drawable.ic_snowy_3_night);  // Mostly Cloudy w/ Snow
     }};
+    /**
+     * A {@link Map} from Tomorrow.io's weather code to the corresponding drawable resource ID.
+     */
+    private final Map<Integer, Integer> tomorrowIoDayIconMapping = new HashMap<>() {{
+        put(1000, R.drawable.ic_clear_day);  // Clear or Mostly Clear (Day)
+        put(1100, R.drawable.ic_clear_day);  // Mostly Clear (Day)
+        put(1101, R.drawable.ic_cloudy_1_day);  // Partly Cloudy (Day)
+        put(1102, R.drawable.ic_cloudy_2_day);  // Mostly Cloudy (Day)
+
+        put(2000, R.drawable.ic_fog);  // Fog (Day)
+        put(2100, R.drawable.ic_fog);  // Light Fog (Day)
+
+        put(4000, R.drawable.ic_rain_and_sleet_mix);  // Drizzle (Day)
+        put(4001, R.drawable.ic_rainy_3);  // Rain (Day)
+        put(4200, R.drawable.ic_rainy_1_day);  // Light Rain (Day)
+        put(4201, R.drawable.ic_rainy_3);  // Heavy Rain (Day)
+
+        put(5000, R.drawable.ic_snowy_3);  // Snow (Day)
+        put(5001, R.drawable.ic_snowy_1_day);  // Flurries (Day)
+        put(5100, R.drawable.ic_snowy_1_day);  // Light Snow (Day)
+        put(5101, R.drawable.ic_snowy_3);  // Heavy Snow (Day)
+
+        put(6000, R.drawable.ic_snow_and_sleet_mix);  // Freezing Drizzle (Day)
+        put(6001, R.drawable.ic_snow_and_sleet_mix);  // Freezing Rain (Day)
+        put(6200, R.drawable.ic_snow_and_sleet_mix);  // Light Freezing Rain (Day)
+        put(6201, R.drawable.ic_snow_and_sleet_mix);  // Heavy Freezing Rain (Day)
+
+        put(7000, R.drawable.ic_snowy_3);  // Ice Pellets (Day)
+        put(7101, R.drawable.ic_snowy_3);  // Heavy Ice Pellets (Day)
+
+        put(8000, R.drawable.ic_scattered_thunderstorms_day);  // Thunderstorm (Day)
+    }};
+    /**
+     * A {@link Map} from Tomorrow.io's weather night code to the corresponding drawable resource ID.
+     */
+    private final Map<Integer, Integer> tomorrowIoNightIconMapping = new HashMap<>() {{
+        put(1000, R.drawable.ic_clear_night);  // Clear or Mostly Clear (Night)
+        put(1100, R.drawable.ic_clear_night);  // Mostly Clear (Night)
+        put(1101, R.drawable.ic_cloudy_1_night);  // Partly Cloudy (Night)
+        put(1102, R.drawable.ic_cloudy_2_night);  // Mostly Cloudy (Night)
+
+        put(2000, R.drawable.ic_fog);  // Fog (Night) - use same fog icon
+        put(2100, R.drawable.ic_fog);  // Light Fog (Night)
+
+        put(4000, R.drawable.ic_rain_and_sleet_mix);  // Drizzle (Night)
+        put(4001, R.drawable.ic_rainy_3_night);  // Rain (Night)
+        put(4200, R.drawable.ic_rainy_3_night);  // Light Rain (Night)
+        put(4201, R.drawable.ic_rainy_3_night);  // Heavy Rain (Night)
+
+        put(5000, R.drawable.ic_snowy_3_night);  // Snow (Night)
+        put(5001, R.drawable.ic_snowy_1_night);  // Flurries (Night)
+        put(5100, R.drawable.ic_snowy_1_night);  // Light Snow (Night)
+        put(5101, R.drawable.ic_snowy_3_night);  // Heavy Snow (Night)
+
+        put(6000, R.drawable.ic_snow_and_sleet_mix);  // Freezing Drizzle (Night) - same as day
+        put(6001, R.drawable.ic_snow_and_sleet_mix);  // Freezing Rain (Night)
+        put(6200, R.drawable.ic_snow_and_sleet_mix);  // Light Freezing Rain (Night)
+        put(6201, R.drawable.ic_snow_and_sleet_mix);  // Heavy Freezing Rain (Night)
+
+        put(7000, R.drawable.ic_snowy_3_night);  // Ice Pellets (Night)
+        put(7101, R.drawable.ic_snowy_3_night);  // Heavy Ice Pellets (Night)
+
+        put(8000, R.drawable.ic_scattered_thunderstorms_night);  // Thunderstorm (Night)
+    }};
+
+    /**
+     * Get the icon resource ID for the given Tomorrow.io weather code based on day or night.
+     *
+     * @param weatherCode The Tomorrow.io weather code (int).
+     * @param isNight True if night icon should be used, false for day.
+     * @return Drawable resource ID.
+     */
+    public int getTomorrowIoIcon(int weatherCode, boolean isNight) {
+        if (isNight) {
+            Integer icon = tomorrowIoNightIconMapping.get(weatherCode);
+            if (icon != null) {
+                return icon;
+            }
+        } else {
+            Integer icon = tomorrowIoDayIconMapping.get(weatherCode);
+            if (icon != null) {
+                return icon;
+            }
+        }
+
+        // Fallback icon if code not found
+        return isNight ? R.drawable.ic_clear_night : R.drawable.ic_clear_day;
+    }
+
 
     public void updateNow(String weatherKey) {
         this.weatherKey = weatherKey;
@@ -146,8 +239,12 @@ public class Weather extends DataUpdater<Weather.WeatherData> {
         this.weatherKey = weatherKey;
     }
 
-    @Override
-    protected WeatherData getData() {
+    /**
+     * Leaving for potential future use
+     * @return Weather data from AccuWeather
+     */
+    @Deprecated
+    protected WeatherData getAccuWeatherData() {
         Location location = GeoLocation.getLocation(context);
 
         // Convert the location to a location key required by the API requests.
@@ -220,13 +317,143 @@ public class Weather extends DataUpdater<Weather.WeatherData> {
                     maximum,
                     forecastSummary,
                     precipitationProbability,
-                    iconResources.get(currentIcon),
-                    iconResources.get(day2Icon),
-                    iconResources.get(day3Icon),
-                    iconResources.get(day4Icon)
+                    accuWeatherIconMap.get(currentIcon),
+                    accuWeatherIconMap.get(day2Icon),
+                    accuWeatherIconMap.get(day3Icon),
+                    accuWeatherIconMap.get(day4Icon)
             );
         } catch (Exception e) {
             Log.e(TAG, "Failed to parse weather JSON.", e);
+            return null;
+        }
+    }
+
+    // Constructs the Tomorrow.io realtime weather API URL
+    private String getTomorrowIoRealtimeUrl(double lat, double lon) {
+        return String.format(Locale.US,
+                "https://api.tomorrow.io/v4/timelines?location=%f,%f&fields=temperature,precipitationProbability,weatherCode&timesteps=current&units=metric&apikey=%s",
+                lat, lon, weatherKey);
+    }
+
+    // Constructs the Tomorrow.io 5-day forecast API URL
+    private String getTomorrowIo5DayForecastUrl(double lat, double lon) {
+        return String.format(Locale.US,
+                "https://api.tomorrow.io/v4/timelines?location=%f,%f&fields=temperatureMin,temperatureMax,weatherCode&timesteps=1d&startTime=now&endTime=nowPlus5d&units=metric&apikey=%s",
+                lat, lon, weatherKey);
+    }
+
+    // Helper: gets icon for forecast day (0-based index) from forecast data
+    private int getIconForForecastDay(JSONArray dailyIntervals, int dayIndex) throws JSONException {
+        if (dailyIntervals.length() <= dayIndex) {
+            // Fallback icon
+            return R.drawable.ic_clear_day;
+        }
+        JSONObject values = dailyIntervals.getJSONObject(dayIndex).getJSONObject("values");
+        int weatherCode = values.getInt("weatherCode");
+        // Default to day icons for forecast
+        return tomorrowIoDayIconMapping.getOrDefault(weatherCode, R.drawable.ic_clear_day);
+    }
+
+    private boolean isNightTime(double lat, double lon) {
+        val libraryLocation =
+                new com.luckycatlabs.sunrisesunset.dto.Location(
+                        String.valueOf(lat),
+                        String.valueOf(lon)
+                );
+        Calendar today = Calendar.getInstance();
+        val calculator = new SunriseSunsetCalculator(libraryLocation, TimeZone.getDefault().getID());
+        val officialSunrise = calculator.getOfficialSunriseCalendarForDate(today);
+        val officialSunset = calculator.getOfficialSunsetCalendarForDate(today);
+        if (officialSunrise == null || officialSunset == null) {
+            Log.w(TAG, "Could not calculate sunrise/sunset, falling back to hour-based check.");
+            Calendar cal = Calendar.getInstance();
+            int hourOfDay = cal.get(Calendar.HOUR_OF_DAY);
+            return (hourOfDay >= 19 || hourOfDay < 6);
+        }
+        return today.after(officialSunset) || today.before(officialSunrise);
+    }
+
+    @Override
+    protected WeatherData getData() {
+        Location location = GeoLocation.getLocation(context);
+        if (location == null) {
+            Log.e(TAG, "Location not available");
+            return null;
+        }
+
+        double lat = location.getLatitude();
+        double lon = location.getLongitude();
+
+        try {
+            // Build request URLs for Tomorrow.io
+            String realtimeUrl = getTomorrowIoRealtimeUrl(lat, lon);
+            String forecastUrl = getTomorrowIo5DayForecastUrl(lat, lon);
+
+            JSONObject realtimeResponse = Network.getJsonObject(realtimeUrl);
+            if (realtimeResponse == null || !realtimeResponse.has("data")) {
+                Log.e(TAG, "Realtime weather data not available");
+                return null;
+            }
+
+            JSONObject forecastResponse = Network.getJsonObject(forecastUrl);
+            if (forecastResponse == null || !forecastResponse.has("data")) {
+                Log.e(TAG, "Forecast weather data not available");
+                return null;
+            }
+
+            // Parse current data
+            JSONObject currentValues = realtimeResponse
+                    .getJSONObject("data")
+                    .getJSONArray("timelines")
+                    .getJSONObject(0)
+                    .getJSONArray("intervals")
+                    .getJSONObject(0)
+                    .getJSONObject("values");
+
+            double currentTemp = currentValues.getDouble("temperature");
+            double precipitationProbability = currentValues.has("precipitationProbability")
+                    ? currentValues.getDouble("precipitationProbability")
+                    : 0.0;
+
+            int currentWeatherCode = currentValues.getInt("weatherCode");
+            boolean isNight = isNightTime(lat,lon);
+            int currentIcon = getTomorrowIoIcon(currentWeatherCode, isNight);
+
+            // Parse 5-day daily forecast data
+            JSONArray dailyIntervals = forecastResponse
+                    .getJSONObject("data")
+                    .getJSONArray("timelines")
+                    .getJSONObject(0)
+                    .getJSONArray("intervals");
+
+            // For minimum and maximum temperatures of the day 1 (today)
+            JSONObject day1Values = dailyIntervals.getJSONObject(0).getJSONObject("values");
+            double minTemp = day1Values.getDouble("temperatureMin");
+            double maxTemp = day1Values.getDouble("temperatureMax");
+
+            // For example, you can create a summary from weather codes or descriptions manually.
+            // Alternatively, use the first day's weatherCode to determine a simple summary.
+            // Here we keep a placeholder.
+
+            // Icons for the next 3 days (day 2 to day 4)
+            int day2Icon = getIconForForecastDay(dailyIntervals, 1);
+            int day3Icon = getIconForForecastDay(dailyIntervals, 2);
+            int day4Icon = getIconForForecastDay(dailyIntervals, 3);
+
+            return new WeatherData(
+                    currentTemp,
+                    minTemp,
+                    maxTemp,
+                    null,
+                    precipitationProbability,
+                    currentIcon,
+                    day2Icon,
+                    day3Icon,
+                    day4Icon
+            );
+
+        } catch (Exception e) {
+            Log.e(TAG, "Failed to parse Tomorrow.io weather JSON.", e);
             return null;
         }
     }
